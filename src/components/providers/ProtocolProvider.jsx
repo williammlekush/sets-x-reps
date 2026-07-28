@@ -12,7 +12,7 @@ export const ProtocolProvider = () => {
     RI: "ri",
     REPS: "reps",
     SETS: "sets",
-    WEIGHTS: "weights",
+    WEIGHT: "weights",
   };
 
   const [data, setData] = useState({
@@ -20,7 +20,7 @@ export const ProtocolProvider = () => {
     [PROTOCOL_KEY.RI]: "",
     [PROTOCOL_KEY.REPS]: "",
     [PROTOCOL_KEY.SETS]: "",
-    [PROTOCOL_KEY.WEIGHTS]: "weights",
+    [PROTOCOL_KEY.WEIGHT]: "",
   });
 
   const isValid =
@@ -47,7 +47,12 @@ export const ProtocolProvider = () => {
         continue;
       }
 
-      setData((prev) => ({ ...prev, ...value, weight: weight / 100 }));
+      setData((prev) => ({
+        ...prev,
+        [PROTOCOL_KEY.REPS]: JSON.stringify(value.reps),
+        [PROTOCOL_KEY.SETS]: JSON.stringify(value.sets),
+        [PROTOCOL_KEY.WEIGHT]: JSON.stringify(weight / 100),
+      }));
       return true;
     }
 
