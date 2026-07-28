@@ -5,13 +5,16 @@ import FormContext from "../../contexts/formContext";
 export const NumberField = ({ id, label, root, input }) => {
   const [form, setForm] = useContext(FormContext);
 
+  const value = form[id];
+
   return (
     <Field.Root id={id}>
       <NumberInput.Root
         type="number"
         variant="flushed"
-        value={form[id]}
+        value={value}
         onValueChange={(e) => setForm((prev) => ({ ...prev, [id]: e.value }))}
+        invalid={!value}
         {...root}
       >
         <NumberInput.Input fontSize="8xl" height="fit" {...input} />

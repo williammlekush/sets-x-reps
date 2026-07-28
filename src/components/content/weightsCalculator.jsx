@@ -1,13 +1,10 @@
-import { Flex } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { useState } from "react";
+import { LuBot } from "react-icons/lu";
 import FormContext from "../../contexts/formContext";
+import { calculateWeights } from "../../util/calculate";
+import { WEIGHTS_IN_FORM_KEY } from "../../util/constants";
 import { NumberField } from "../shared/numberField";
-
-const WEIGHTS_IN_FORM_KEY = {
-  ORM: "in-orm",
-  RI: "in-ri",
-  REPS: "in-reps",
-};
 
 export const WeightsCalculator = () => {
   const [form, setForm] = useState({
@@ -16,19 +13,31 @@ export const WeightsCalculator = () => {
     [WEIGHTS_IN_FORM_KEY.REPS]: "",
   });
 
+  const isInvalid =
+    !form[WEIGHTS_IN_FORM_KEY.ORM] ||
+    !form[WEIGHTS_IN_FORM_KEY.RI] ||
+    !form[WEIGHTS_IN_FORM_KEY.REPS];
+
   const onSubmitWeightsForm = (e) => {
     e.preventDefault();
+    console.log(
+      calculateWeights({
+        oneRepMax: parseFloat(form[WEIGHTS_IN_FORM_KEY.ORM]),
+        relativeIntensity: parseFloat(form[WEIGHTS_IN_FORM_KEY.RI]),
+        reps: parseFloat(form[WEIGHTS_IN_FORM_KEY.REPS]),
+      }),
+    );
   };
 
   return (
-    <FormContext.Provider value={[form, setForm]}>
-      <form onSubmit={onSubmitWeightsForm}>
+    <form onSubmit={onSubmitWeightsForm}>
+      <FormContext.Provider value={[form, setForm]}>
         <Flex direction="column" alignItems="center" gapY={4}>
           <NumberField
             id={WEIGHTS_IN_FORM_KEY.ORM}
             label="One Rep Max"
             root={{
-              min: 0,
+              min: 1,
               max: 999,
               formatOptions: { maximumFractionDigits: 0 },
             }}
@@ -54,8 +63,8 @@ export const WeightsCalculator = () => {
             id={WEIGHTS_IN_FORM_KEY.REPS}
             label="Reps per Set"
             root={{
-              min: 0,
-              max: 50,
+              min: 1,
+              max: 12,
               formatOptions: { maximumFractionDigits: 0 },
             }}
             input={{
@@ -63,8 +72,22 @@ export const WeightsCalculator = () => {
               maxWidth: "2.2ch",
             }}
           />
+          <Button
+            type="submit"
+            size="2xl"
+            minWidth="full"
+            round="md"
+            marginTop={8}
+            fontSize="2xl"
+            variant="surface"
+            colorPalette="cyan"
+            disabled={isInvalid}
+          >
+            <LuBot style={{ width: "2.25rem", height: "2.25rem" }} />
+            Calculate
+          </Button>
         </Flex>
-      </form>
-    </FormContext.Provider>
+      </FormContext.Provider>
+    </form>
   );
 };
