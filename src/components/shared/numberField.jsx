@@ -3,7 +3,9 @@ import { useContext } from "react";
 import FormContext from "../../contexts/formContext";
 
 export const NumberField = ({ id, label, root, input }) => {
-  const [form, setForm] = useContext(FormContext);
+  const {
+    state: [form, setForm],
+  } = useContext(FormContext);
 
   const value = form[id];
 
