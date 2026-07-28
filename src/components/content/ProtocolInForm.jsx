@@ -1,40 +1,44 @@
 import { Button, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { LuBot } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 import FormContext from "../../contexts/formContext";
-import { calculateWeights } from "../../util/calculate";
-import { WEIGHTS_IN_FORM_KEY } from "../../util/constants";
-import { NumberField } from "../shared/numberField";
+import { getProtocol } from "../../util/calculate";
+import { PROTOCOL_IN_FORM_KEY } from "../../util/constants";
+import { NumberField } from "../shared/NumberField";
 
-export const WeightsCalculator = () => {
+export const ProtocolInForm = () => {
   const [form, setForm] = useState({
-    [WEIGHTS_IN_FORM_KEY.ORM]: "",
-    [WEIGHTS_IN_FORM_KEY.RI]: "",
-    [WEIGHTS_IN_FORM_KEY.REPS]: "",
+    [PROTOCOL_IN_FORM_KEY.ORM]: "",
+    [PROTOCOL_IN_FORM_KEY.RI]: "",
+    [PROTOCOL_IN_FORM_KEY.REPS]: "",
   });
 
   const isInvalid =
-    !form[WEIGHTS_IN_FORM_KEY.ORM] ||
-    !form[WEIGHTS_IN_FORM_KEY.RI] ||
-    !form[WEIGHTS_IN_FORM_KEY.REPS];
+    !form[PROTOCOL_IN_FORM_KEY.ORM] ||
+    !form[PROTOCOL_IN_FORM_KEY.RI] ||
+    !form[PROTOCOL_IN_FORM_KEY.REPS];
 
-  const onSubmitWeightsForm = (e) => {
+  const navigate = useNavigate();
+
+  const onSubmitProtocolInForm = (e) => {
     e.preventDefault();
     console.log(
-      calculateWeights({
-        oneRepMax: parseFloat(form[WEIGHTS_IN_FORM_KEY.ORM]),
-        relativeIntensity: parseFloat(form[WEIGHTS_IN_FORM_KEY.RI]),
-        reps: parseFloat(form[WEIGHTS_IN_FORM_KEY.REPS]),
+      getProtocol({
+        oneRepMax: parseFloat(form[PROTOCOL_IN_FORM_KEY.ORM]),
+        relativeIntensity: parseFloat(form[PROTOCOL_IN_FORM_KEY.RI]),
+        reps: parseFloat(form[PROTOCOL_IN_FORM_KEY.REPS]),
       }),
     );
+    navigate("/protocol-results");
   };
 
   return (
-    <form onSubmit={onSubmitWeightsForm}>
+    <form onSubmit={onSubmitProtocolInForm}>
       <FormContext.Provider value={[form, setForm]}>
         <Flex direction="column" alignItems="center" gapY={4}>
           <NumberField
-            id={WEIGHTS_IN_FORM_KEY.ORM}
+            id={PROTOCOL_IN_FORM_KEY.ORM}
             label="One Rep Max"
             root={{
               min: 1,
@@ -47,7 +51,7 @@ export const WeightsCalculator = () => {
             }}
           />
           <NumberField
-            id={WEIGHTS_IN_FORM_KEY.RI}
+            id={PROTOCOL_IN_FORM_KEY.RI}
             label="Relative Intensity"
             root={{
               min: 0,
@@ -60,7 +64,7 @@ export const WeightsCalculator = () => {
             }}
           />
           <NumberField
-            id={WEIGHTS_IN_FORM_KEY.REPS}
+            id={PROTOCOL_IN_FORM_KEY.REPS}
             label="Reps per Set"
             root={{
               min: 1,

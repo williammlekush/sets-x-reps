@@ -51,7 +51,7 @@ const INTENSITY_TO_PROTOCOL = {
   },
 };
 
-export const calculateWeights = ({ oneRepMax, relativeIntensity, reps }) => {
+export const getProtocol = ({ oneRepMax, relativeIntensity, reps }) => {
   const absoluteIntensity =
     (relativeIntensity *
       RELATIVE_MAX_FACTORS[Math.min(RELATIVE_MAX_FACTORS.length, reps) - 1]) /
