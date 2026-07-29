@@ -1,3 +1,8 @@
+export const ROUTE = {
+  INDEX: "/",
+  PROTOCOL_RESULTS: "/protocol-results",
+};
+
 export const UNIT = {
   KG: "kg",
   LB: "lb",
