@@ -3,7 +3,7 @@ import {
   INTENSITY_TO_PROTOCOL,
   RELATIVE_MAX_FACTORS,
 } from "../..//util/constants";
-import FormContext from "../../contexts/formContext";
+import ProtocolContext from "../../contexts/formContext";
 import { Layout } from "../structure/Layout";
 
 export const ProtocolProvider = () => {
@@ -26,10 +26,11 @@ export const ProtocolProvider = () => {
   const isValid =
     data[PROTOCOL_KEY.ORM] && data[PROTOCOL_KEY.RI] && data[PROTOCOL_KEY.REPS];
 
-  const loadProtocol = () => {
+  const loadProtocol = ({
+    reps = parseFloat(data[PROTOCOL_KEY.REPS]),
+    relativeIntensity = parseFloat(data[PROTOCOL_KEY.RI]),
+  } = {}) => {
     const oneRepMax = parseFloat(data[PROTOCOL_KEY.ORM]);
-    const relativeIntensity = parseFloat(data[PROTOCOL_KEY.RI]);
-    const reps = parseFloat(data[PROTOCOL_KEY.REPS]);
 
     if (!oneRepMax || !relativeIntensity || !reps) {
       return false;
@@ -49,7 +50,6 @@ export const ProtocolProvider = () => {
 
       setData((prev) => ({
         ...prev,
-        [PROTOCOL_KEY.REPS]: JSON.stringify(value.reps),
         [PROTOCOL_KEY.SETS]: JSON.stringify(value.sets),
         [PROTOCOL_KEY.WEIGHT]: JSON.stringify(weight / 100),
       }));
@@ -60,7 +60,7 @@ export const ProtocolProvider = () => {
   };
 
   return (
-    <FormContext.Provider
+    <ProtocolContext.Provider
       value={{
         KEY: PROTOCOL_KEY,
         state: [data, setData],
@@ -69,6 +69,6 @@ export const ProtocolProvider = () => {
       }}
     >
       <Layout />
-    </FormContext.Provider>
+    </ProtocolContext.Provider>
   );
 };

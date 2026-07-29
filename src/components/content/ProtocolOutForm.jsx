@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import FormContext from "../../contexts/formContext";
+import ProtocolContext from "../../contexts/formContext";
 import { NumberDisplay } from "../shared/NumberDisplay";
 import { NumberField } from "../shared/NumberField";
 import { X } from "../shared/X";
@@ -9,11 +9,10 @@ import { X } from "../shared/X";
 export const ProtocolOutForm = () => {
   const {
     KEY,
-    state: [data, _],
+    state: [data, setData],
     loadProtocol,
-  } = useContext(FormContext);
+  } = useContext(ProtocolContext);
 
-  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +20,18 @@ export const ProtocolOutForm = () => {
       navigate("/");
     }
   }, []);
+
+  const onValueChangeReps = (e) => {
+    const value = e.value;
+    setData((prev) => ({ ...prev, [KEY.REPS]: value }));
+    loadProtocol({ [KEY.REPS]: value });
+  };
+
+  const onValueChangeRelativeIntensity = (e) => {
+    const value = e.value;
+    setData((prev) => ({ ...prev, [KEY.RI]: value }));
+    loadProtocol({ [KEY.RI]: value });
+  };
 
   return (
     <Flex direction="column" alignItems="flex-start" gapY={4}>
@@ -33,6 +44,7 @@ export const ProtocolOutForm = () => {
           min: 1,
           max: 12,
           formatOptions: { maximumFractionDigits: 0 },
+          onValueChange: onValueChangeReps,
         }}
         input={{
           placeholder: "##",
@@ -40,15 +52,39 @@ export const ProtocolOutForm = () => {
         }}
       />
       <X />
-      <NumberDisplay
-        label="Pounds (lb)"
-        value={data[KEY.WEIGHT]}
-        valueFormat={{
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-          roundingIncrement: 25,
-        }}
-      />
+      <Flex direction="column" alignItems="flex-start" gapY={0}>
+        <NumberField
+          id={KEY.RI}
+          label="RI"
+          root={{
+            min: 0,
+            max: 1,
+            formatOptions: { style: "percent" },
+            onValueChange: onValueChangeRelativeIntensity,
+          }}
+          input={{
+            placeholder: "0%",
+            maxWidth: "4.5ch",
+            fontSize: "4xl",
+          }}
+          fieldRoot={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+          fieldLabel={{
+            fontStyle: "4xl",
+          }}
+        />
+        <NumberDisplay
+          label="Pounds (lb)"
+          value={data[KEY.WEIGHT]}
+          valueFormat={{
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            roundingIncrement: 25,
+          }}
+        />
+      </Flex>
     </Flex>
   );
 };

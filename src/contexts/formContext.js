@@ -1,10 +1,10 @@
 import { createContext } from "react";
 
-const FormContext = createContext({
+const ProtocolContext = createContext({
   KEY: {},
   state: [],
   isValid: false,
   loadProtocol: () => {},
 });
 
-export default FormContext;
+export default ProtocolContext;

@@ -2,11 +2,11 @@ import { Button, Flex } from "@chakra-ui/react";
 import { useContext } from "react";
 import { LuBot } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import FormContext from "../../contexts/formContext";
+import ProtocolContext from "../../contexts/formContext";
 import { NumberField } from "../shared/NumberField";
 
 export const ProtocolInForm = () => {
-  const { KEY, isValid } = useContext(FormContext);
+  const { KEY, isValid } = useContext(ProtocolContext);
 
   const navigate = useNavigate();
 
