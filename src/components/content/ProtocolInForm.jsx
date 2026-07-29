@@ -12,7 +12,6 @@ export const ProtocolInForm = () => {
 
   const onSubmitProtocolInForm = (e) => {
     e.preventDefault();
-    console.log("hit");
     navigate("protocol-results");
   };
 
