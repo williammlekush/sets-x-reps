@@ -1,6 +1,6 @@
-import { Field, NumberInput } from "@chakra-ui/react";
+import { Field, Group, NumberInput } from "@chakra-ui/react";
 import { useContext } from "react";
-import ProtocolContext from "../../contexts/formContext";
+import ProtocolContext from "../../contexts/protocolContext";
 
 export const NumberField = ({
   id,
@@ -9,6 +9,7 @@ export const NumberField = ({
   input,
   fieldRoot,
   fieldLabel,
+  endAddon,
 }) => {
   const {
     state: [data, setData],
@@ -26,7 +27,10 @@ export const NumberField = ({
         invalid={!value}
         {...root}
       >
-        <NumberInput.Input fontSize="8xl" height="fit" {...input} />
+        <Group alignItems="flex-end" gapX={4}>
+          <NumberInput.Input fontSize="8xl" height="fit" {...input} />
+          {endAddon}
+        </Group>
         <NumberInput.Control visibility="hidden" />
       </NumberInput.Root>
       <Field.Label textStyle="4xl" {...fieldLabel}>

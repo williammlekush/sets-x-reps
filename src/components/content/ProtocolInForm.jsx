@@ -2,11 +2,13 @@ import { Button, Flex } from "@chakra-ui/react";
 import { useContext } from "react";
 import { LuBot } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import ProtocolContext from "../../contexts/formContext";
+import ProtocolContext from "../../contexts/protocolContext";
+import { PROTOCOL_KEY } from "../../util/constants";
 import { NumberField } from "../shared/NumberField";
+import { UnitToggle } from "../shared/UnitToggle";
 
 export const ProtocolInForm = () => {
-  const { KEY, isValid } = useContext(ProtocolContext);
+  const { isValid } = useContext(ProtocolContext);
 
   const navigate = useNavigate();
 
@@ -18,21 +20,24 @@ export const ProtocolInForm = () => {
   return (
     <form onSubmit={onSubmitProtocolInForm}>
       <Flex direction="column" alignItems="center" gapY={4}>
+        <Flex gapX={0} alignItems="center">
+          <NumberField
+            id={PROTOCOL_KEY.ORM}
+            label="One Rep Max"
+            root={{
+              min: 1,
+              max: 999,
+              formatOptions: { maximumFractionDigits: 0 },
+            }}
+            input={{
+              placeholder: "###",
+              maxWidth: "3.2ch",
+            }}
+            endAddon={<UnitToggle />}
+          />
+        </Flex>
         <NumberField
-          id={KEY.ORM}
-          label="One Rep Max"
-          root={{
-            min: 1,
-            max: 999,
-            formatOptions: { maximumFractionDigits: 0 },
-          }}
-          input={{
-            placeholder: "###",
-            maxWidth: "3.2ch",
-          }}
-        />
-        <NumberField
-          id={KEY.RI}
+          id={PROTOCOL_KEY.RI}
           label="Relative Intensity"
           root={{
             min: 0,
@@ -45,7 +50,7 @@ export const ProtocolInForm = () => {
           }}
         />
         <NumberField
-          id={KEY.REPS}
+          id={PROTOCOL_KEY.REPS}
           label="Reps per Set"
           root={{
             min: 1,

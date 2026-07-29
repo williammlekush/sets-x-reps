@@ -1,26 +1,21 @@
 import { useState } from "react";
+import ProtocolContext from "../../contexts/protocolContext";
 import {
   INTENSITY_TO_PROTOCOL,
+  PROTOCOL_KEY,
   RELATIVE_MAX_FACTORS,
-} from "../..//util/constants";
-import ProtocolContext from "../../contexts/formContext";
+  UNIT,
+} from "../../util/constants";
 import { Layout } from "../structure/Layout";
 
 export const ProtocolProvider = () => {
-  const PROTOCOL_KEY = {
-    ORM: "orm",
-    RI: "ri",
-    REPS: "reps",
-    SETS: "sets",
-    WEIGHT: "weights",
-  };
-
   const [data, setData] = useState({
     [PROTOCOL_KEY.ORM]: "",
     [PROTOCOL_KEY.RI]: "",
     [PROTOCOL_KEY.REPS]: "",
     [PROTOCOL_KEY.SETS]: "",
     [PROTOCOL_KEY.WEIGHT]: "",
+    [PROTOCOL_KEY.UNITS]: UNIT.LB,
   });
 
   const isValid =
@@ -62,7 +57,6 @@ export const ProtocolProvider = () => {
   return (
     <ProtocolContext.Provider
       value={{
-        KEY: PROTOCOL_KEY,
         state: [data, setData],
         isValid,
         loadProtocol,

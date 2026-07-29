@@ -1,14 +1,14 @@
 import { Flex } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ProtocolContext from "../../contexts/formContext";
+import ProtocolContext from "../../contexts/protocolContext";
+import { PROTOCOL_KEY } from "../../util/constants";
 import { NumberDisplay } from "../shared/NumberDisplay";
 import { NumberField } from "../shared/NumberField";
 import { X } from "../shared/X";
 
 export const ProtocolOutForm = () => {
   const {
-    KEY,
     state: [data, setData],
     loadProtocol,
   } = useContext(ProtocolContext);
@@ -23,22 +23,22 @@ export const ProtocolOutForm = () => {
 
   const onValueChangeReps = (e) => {
     const value = e.value;
-    setData((prev) => ({ ...prev, [KEY.REPS]: value }));
-    loadProtocol({ [KEY.REPS]: value });
+    setData((prev) => ({ ...prev, [PROTOCOL_KEY.REPS]: value }));
+    loadProtocol({ [PROTOCOL_KEY.REPS]: value });
   };
 
   const onValueChangeRelativeIntensity = (e) => {
     const value = e.value;
-    setData((prev) => ({ ...prev, [KEY.RI]: value }));
-    loadProtocol({ [KEY.RI]: value });
+    setData((prev) => ({ ...prev, [PROTOCOL_KEY.RI]: value }));
+    loadProtocol({ [PROTOCOL_KEY.RI]: value });
   };
 
   return (
     <Flex direction="column" alignItems="flex-start" gapY={4}>
-      <NumberDisplay label="Sets" value={data[KEY.SETS]} />
+      <NumberDisplay label="Sets" value={data[PROTOCOL_KEY.SETS]} />
       <X />
       <NumberField
-        id={KEY.REPS}
+        id={PROTOCOL_KEY.REPS}
         label="Reps"
         root={{
           min: 1,
@@ -54,7 +54,7 @@ export const ProtocolOutForm = () => {
       <X />
       <Flex direction="column" alignItems="flex-start" gapY={0}>
         <NumberField
-          id={KEY.RI}
+          id={PROTOCOL_KEY.RI}
           label="RI"
           root={{
             min: 0,
@@ -77,7 +77,7 @@ export const ProtocolOutForm = () => {
         />
         <NumberDisplay
           label="Pounds (lb)"
-          value={data[KEY.WEIGHT]}
+          value={data[PROTOCOL_KEY.WEIGHT]}
           valueFormat={{
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,

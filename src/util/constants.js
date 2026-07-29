@@ -1,3 +1,17 @@
+export const UNIT = {
+  KG: "kg",
+  LB: "lb",
+};
+
+export const PROTOCOL_KEY = {
+  ORM: "orm",
+  RI: "ri",
+  REPS: "reps",
+  SETS: "sets",
+  WEIGHT: "weights",
+  UNITS: "units",
+};
+
 export const RELATIVE_MAX_FACTORS = [
   100, 97, 94, 92, 89, 86, 83, 81, 78, 75, 73, 71,
 ];
