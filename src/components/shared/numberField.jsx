@@ -25,6 +25,7 @@ export const NumberField = ({
         value={value}
         onValueChange={(e) => setData((prev) => ({ ...prev, [id]: e.value }))}
         invalid={!value}
+        colorPalette="cyan"
         {...root}
       >
         <Group alignItems="flex-end" gapX={4}>

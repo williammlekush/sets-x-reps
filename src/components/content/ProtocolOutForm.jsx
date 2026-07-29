@@ -2,9 +2,10 @@ import { Flex } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ProtocolContext from "../../contexts/protocolContext";
-import { PROTOCOL_KEY } from "../../util/constants";
+import { PROTOCOL_KEY, UNIT } from "../../util/constants";
 import { NumberDisplay } from "../shared/NumberDisplay";
 import { NumberField } from "../shared/NumberField";
+import { UnitToggle } from "../shared/UnitToggle";
 import { X } from "../shared/X";
 
 export const ProtocolOutForm = () => {
@@ -76,13 +77,14 @@ export const ProtocolOutForm = () => {
           }}
         />
         <NumberDisplay
-          label="Pounds (lb)"
+          label={data[PROTOCOL_KEY.UNITS] === UNIT.KG ? "Kilograms" : "Pounds"}
           value={data[PROTOCOL_KEY.WEIGHT]}
           valueFormat={{
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
             roundingIncrement: 25,
           }}
+          endAddon={<UnitToggle />}
         />
       </Flex>
     </Flex>

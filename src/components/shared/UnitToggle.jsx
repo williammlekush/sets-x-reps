@@ -5,17 +5,14 @@ import { PROTOCOL_KEY, UNIT } from "../../util/constants";
 
 export const UnitToggle = () => {
   const {
-    state: [data, setData],
+    state: [data, _],
+    toggleUnits,
   } = useContext(ProtocolContext);
-
-  const onValueChange = (e) => {
-    setData((prev) => ({ ...prev, [PROTOCOL_KEY.UNITS]: e.value }));
-  };
 
   return (
     <SegmentGroup.Root
       value={data[PROTOCOL_KEY.UNITS]}
-      onValueChange={onValueChange}
+      onValueChange={(e) => toggleUnits(e.value)}
       defaultValue={data[PROTOCOL_KEY.UNITS]}
       orientation="vertical"
       height={28}

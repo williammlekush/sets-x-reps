@@ -54,12 +54,45 @@ export const ProtocolProvider = () => {
     return false;
   };
 
+  const toggleUnits = (value) => {
+    const unit = Object.values(UNIT).find((u) => u === value);
+
+    if (!unit) {
+      return;
+    }
+
+    setData((prev) => {
+      const newData = { ...prev, [PROTOCOL_KEY.UNITS]: unit };
+      let oneRepMax = parseFloat(prev[PROTOCOL_KEY.ORM]);
+      let weight = parseFloat(prev[PROTOCOL_KEY.WEIGHT]);
+
+      if (!oneRepMax && !weight) {
+        return newData;
+      }
+
+      if (unit === UNIT.KG) {
+        return {
+          ...newData,
+          [PROTOCOL_KEY.ORM]: oneRepMax ? JSON.stringify(oneRepMax / 2.2) : "",
+          [PROTOCOL_KEY.WEIGHT]: weight ? JSON.stringify(weight / 2.2) : "",
+        };
+      }
+
+      return {
+        ...newData,
+        [PROTOCOL_KEY.ORM]: oneRepMax ? JSON.stringify(oneRepMax * 2.2) : "",
+        [PROTOCOL_KEY.WEIGHT]: weight ? JSON.stringify(weight * 2.2) : "",
+      };
+    });
+  };
+
   return (
     <ProtocolContext.Provider
       value={{
         state: [data, setData],
         isValid,
         loadProtocol,
+        toggleUnits,
       }}
     >
       <Layout />

@@ -1,6 +1,6 @@
-import { Flex, FormatNumber, Text } from "@chakra-ui/react";
+import { Flex, FormatNumber, Group, Text } from "@chakra-ui/react";
 
-export const NumberDisplay = ({ label, value, valueFormat }) => {
+export const NumberDisplay = ({ label, value, valueFormat, endAddon }) => {
   return (
     <Flex
       direction="column"
@@ -9,9 +9,12 @@ export const NumberDisplay = ({ label, value, valueFormat }) => {
       minWidth="full"
       lineHeight={1.25}
     >
-      <Text fontSize="8xl">
-        <FormatNumber value={parseFloat(value)} {...valueFormat} />
-      </Text>
+      <Group alignItems="flex-end" gapX={4}>
+        <Text fontSize="8xl">
+          <FormatNumber value={parseFloat(value)} {...valueFormat} />
+        </Text>
+        {endAddon}
+      </Group>
       <Text fontSize="4xl">{label}</Text>
     </Flex>
   );
