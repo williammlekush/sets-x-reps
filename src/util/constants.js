@@ -1,6 +1,7 @@
 export const ROUTE = {
   INDEX: "/",
   PROTOCOL_RESULTS: "/protocol-results",
+  SAVED_PROTOCOLS: "/protocol-saved",
 };
 
 export const UNIT = {
