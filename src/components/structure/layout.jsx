@@ -1,6 +1,7 @@
 import { Container, useBreakpointValue } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import { Header } from "../content/Header";
+import { Toaster } from "../ui/toaster";
 
 export const Layout = () => {
   const mdBreakpoint = useBreakpointValue("md");
@@ -14,6 +15,7 @@ export const Layout = () => {
     >
       <Header />
       <Outlet />
+      <Toaster />
     </Container>
   );
 };

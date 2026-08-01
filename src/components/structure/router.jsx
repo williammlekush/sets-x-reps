@@ -1,7 +1,7 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { ROUTE } from "../../util/constants";
 import { ProtocolInForm } from "../content/ProtocolInForm";
-import { ProtocolOutForm } from "../content/ProtocolOutForm";
+import { ProtocolOutForm } from "../content/ProtocolOutForm/ProtocolOutForm";
 import { ProtocolProvider } from "../providers/ProtocolProvider";
 
 const Router = () => {

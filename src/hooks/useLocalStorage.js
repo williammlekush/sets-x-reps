@@ -1,4 +1,8 @@
-export const STORAGE_KEY = {};
+import { PROTOCOL_KEY } from "../util/constants";
+
+export const STORAGE_KEY = {
+  PROTOCOLS: "protocols",
+};
 
 export const useLocalStorage = () => {
   const keyGuard = (key, callback) => {
@@ -8,16 +12,48 @@ export const useLocalStorage = () => {
     return callback();
   };
 
-  const getValueForKey = (key) =>
+  const getKeyValue = (key) =>
     keyGuard(key, () => {
       return JSON.parse(localStorage.getItem(key));
     });
 
-  const setValueForKey = (key, value) =>
+  const setKeyValue = (key, value) =>
     keyGuard(key, () => localStorage.setItem(key, JSON.stringify(value)));
 
-  const deleteValueForKey = (key) =>
-    keyGuard(key, () => localStorage.removeItem(key));
+  const deleteKey = (key) => keyGuard(key, () => localStorage.removeItem(key));
 
-  return { getValueForKey, setValueForKey, deleteValueForKey };
+  const pushToKey = (key, value) =>
+    keyGuard(key, () => {
+      const storedValue = localStorage.getItem(key);
+      const values = JSON.parse(storedValue);
+
+      if (!Array.isArray(values)) {
+        return false;
+      }
+
+      if (values.length === 0) {
+        localStorage.setItem(key, JSON.stringify([value]));
+        return true;
+      }
+
+      const newValues = values.filter((val) => {
+        for (const key of Object.values(PROTOCOL_KEY)) {
+          if (val[key] !== value[key]) {
+            return true;
+          }
+        }
+        return false;
+      });
+
+      if (newValues.length === 0) {
+        return true;
+      }
+
+      newValues.unshift(value);
+
+      localStorage.setItem(key, JSON.stringify(newValues));
+      return true;
+    });
+
+  return { getKeyValue, setKeyValue, deleteKey, pushToKey };
 };

@@ -1,18 +1,19 @@
-import { Button, Clipboard, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ProtocolContext from "../../contexts/protocolContext";
-import { PROTOCOL_KEY, UNIT } from "../../util/constants";
-import { NumberDisplay } from "../shared/NumberDisplay";
-import { NumberField } from "../shared/NumberField";
-import { UnitToggle } from "../shared/UnitToggle";
-import { X } from "../shared/X";
+import ProtocolContext from "../../../contexts/protocolContext";
+import { PROTOCOL_KEY, UNIT } from "../../../util/constants";
+import { NumberDisplay } from "../../shared/NumberDisplay";
+import { NumberField } from "../../shared/NumberField";
+import { UnitToggle } from "../../shared/UnitToggle";
+import { X } from "../../shared/X";
+import { CopyButton } from "./sub/CopyButton";
+import { SaveButton } from "./sub/SaveButton";
 
 export const ProtocolOutForm = () => {
   const {
     state: [data, setData],
     loadProtocol,
-    isValid,
   } = useContext(ProtocolContext);
 
   const navigate = useNavigate();
@@ -94,31 +95,10 @@ export const ProtocolOutForm = () => {
           }}
           endAddon={<UnitToggle />}
         />
-        <Clipboard.Root
-          value={
-            `${data[PROTOCOL_KEY.SETS]} ${PROTOCOL_KEY.SETS}` +
-            ` x ${data[PROTOCOL_KEY.REPS]} ${PROTOCOL_KEY.REPS}` +
-            ` x ${data[PROTOCOL_KEY.WEIGHT]} ${data[PROTOCOL_KEY.UNITS]}` +
-            ` (${data[PROTOCOL_KEY.RI]})`
-          }
-          minWidth="full"
-        >
-          <Clipboard.Trigger asChild>
-            <Button
-              variant="surface"
-              disabled={!isValid}
-              size={{ base: "xl", md: "2xl" }}
-              fontSize={{ base: "xl", md: "2xl" }}
-              marginTop={{ base: 4, md: 8 }}
-              minWidth="full"
-              round="md"
-              colorPalette="cyan"
-            >
-              <Clipboard.Indicator />
-              <Clipboard.CopyText />
-            </Button>
-          </Clipboard.Trigger>
-        </Clipboard.Root>
+        <Flex direction="column" minWidth="full" gapY={4} marginTop={8}>
+          <SaveButton />
+          <CopyButton />
+        </Flex>
       </Flex>
     </Flex>
   );
