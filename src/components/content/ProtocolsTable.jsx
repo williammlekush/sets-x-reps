@@ -14,9 +14,9 @@ export const ProtocolsTable = () => {
           <Table.ColumnHeader textAlign="center">RI</Table.ColumnHeader>
           <Table.ColumnHeader textAlign="center">ORM</Table.ColumnHeader>
           <Table.ColumnHeader textAlign="center">Reps</Table.ColumnHeader>
-          <Table.ColumnHeader />
+          <Table.ColumnHeader padding={0} />
           <Table.ColumnHeader textAlign="center">Sets</Table.ColumnHeader>
-          <Table.ColumnHeader />
+          <Table.ColumnHeader padding={0} />
           <Table.ColumnHeader textAlign="center">Weight</Table.ColumnHeader>
         </Table.Row>
       </Table.Header>
@@ -33,11 +33,15 @@ export const ProtocolsTable = () => {
             <Table.Cell textAlign="center">
               {protocol[PROTOCOL_KEY.REPS]}
             </Table.Cell>
-            <Table.Cell textAlign="center">x</Table.Cell>
+            <Table.Cell textAlign="center" padding={0}>
+              x
+            </Table.Cell>
             <Table.Cell textAlign="center">
               {protocol[PROTOCOL_KEY.SETS]}
             </Table.Cell>
-            <Table.Cell textAlign="center">x</Table.Cell>
+            <Table.Cell textAlign="center" padding={0}>
+              x
+            </Table.Cell>
             <Table.Cell textAlign="center">
               <FormatNumber
                 value={parseFloat(protocol[PROTOCOL_KEY.WEIGHT])}
