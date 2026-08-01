@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Button, Clipboard, Flex } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ProtocolContext from "../../contexts/protocolContext";
@@ -12,6 +12,7 @@ export const ProtocolOutForm = () => {
   const {
     state: [data, setData],
     loadProtocol,
+    isValid,
   } = useContext(ProtocolContext);
 
   const navigate = useNavigate();
@@ -35,24 +36,31 @@ export const ProtocolOutForm = () => {
   };
 
   return (
-    <Flex direction="column" alignItems="flex-start" gapY={4}>
-      <NumberDisplay label="Sets" value={data[PROTOCOL_KEY.SETS]} />
-      <X />
-      <NumberField
-        id={PROTOCOL_KEY.REPS}
-        label="Reps"
-        root={{
-          min: 1,
-          max: 12,
-          formatOptions: { maximumFractionDigits: 0 },
-          onValueChange: onValueChangeReps,
-        }}
-        input={{
-          placeholder: "##",
-          maxWidth: "2.2ch",
-        }}
-      />
-      <X />
+    <Flex direction="column" gapY={10} minWith="full">
+      <Flex alignItems="baseline" width="70%" justifyContent="space-between">
+        <NumberDisplay
+          label="Sets"
+          value={data[PROTOCOL_KEY.SETS]}
+          container={{ minWidth: "unset" }}
+        />
+        <X />
+        <NumberField
+          id={PROTOCOL_KEY.REPS}
+          label="Reps"
+          root={{
+            min: 1,
+            max: 12,
+            formatOptions: { maximumFractionDigits: 0 },
+            onValueChange: onValueChangeReps,
+          }}
+          input={{
+            placeholder: "##",
+            maxWidth: "2.2ch",
+          }}
+          fieldRoot={{ width: "unset" }}
+          fieldLabel={{ marginTop: -2 }}
+        />
+      </Flex>
       <Flex direction="column" alignItems="flex-start" gapY={0}>
         <NumberField
           id={PROTOCOL_KEY.RI}
@@ -86,6 +94,31 @@ export const ProtocolOutForm = () => {
           }}
           endAddon={<UnitToggle />}
         />
+        <Clipboard.Root
+          value={
+            `${data[PROTOCOL_KEY.SETS]} ${PROTOCOL_KEY.SETS}` +
+            ` x ${data[PROTOCOL_KEY.REPS]} ${PROTOCOL_KEY.REPS}` +
+            ` x ${data[PROTOCOL_KEY.WEIGHT]} ${data[PROTOCOL_KEY.UNITS]}` +
+            ` (${data[PROTOCOL_KEY.RI]})`
+          }
+          minWidth="full"
+        >
+          <Clipboard.Trigger asChild>
+            <Button
+              variant="surface"
+              disabled={!isValid}
+              size={{ base: "xl", md: "2xl" }}
+              fontSize={{ base: "xl", md: "2xl" }}
+              marginTop={{ base: 4, md: 8 }}
+              minWidth="full"
+              round="md"
+              colorPalette="cyan"
+            >
+              <Clipboard.Indicator />
+              <Clipboard.CopyText />
+            </Button>
+          </Clipboard.Trigger>
+        </Clipboard.Root>
       </Flex>
     </Flex>
   );

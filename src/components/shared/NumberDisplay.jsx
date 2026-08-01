@@ -1,6 +1,12 @@
 import { Flex, FormatNumber, Group, Text } from "@chakra-ui/react";
 
-export const NumberDisplay = ({ label, value, valueFormat, endAddon }) => {
+export const NumberDisplay = ({
+  label,
+  value,
+  valueFormat,
+  endAddon,
+  container,
+}) => {
   return (
     <Flex
       direction="column"
@@ -8,6 +14,7 @@ export const NumberDisplay = ({ label, value, valueFormat, endAddon }) => {
       gap={0}
       minWidth="full"
       lineHeight={1.25}
+      {...container}
     >
       <Group alignItems="flex-end" gapX={4}>
         <Text fontSize={{ base: "6xl", md: "8xl" }}>
