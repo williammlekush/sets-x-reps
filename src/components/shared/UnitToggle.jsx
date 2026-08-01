@@ -15,8 +15,8 @@ export const UnitToggle = () => {
       onValueChange={(e) => toggleUnits(e.value)}
       defaultValue={data[PROTOCOL_KEY.UNITS]}
       orientation="vertical"
-      height={28}
-      width={18}
+      height={{ base: 20, md: 28 }}
+      width={{ base: 14, md: 18 }}
       css={{
         "--segment-indicator-bg": "colors.cyan.900",
         "& .chakra-segment-group__item": {
@@ -34,8 +34,8 @@ export const UnitToggle = () => {
     >
       <SegmentGroup.Indicator />
       <SegmentGroup.Items
-        fontSize="3xl"
-        height={28}
+        fontSize={{ base: "xl", md: "3xl" }}
+        height={{ base: 20, md: 28 }}
         items={Object.values(UNIT)}
       />
     </SegmentGroup.Root>

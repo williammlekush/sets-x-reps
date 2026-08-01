@@ -10,12 +10,12 @@ export const NumberDisplay = ({ label, value, valueFormat, endAddon }) => {
       lineHeight={1.25}
     >
       <Group alignItems="flex-end" gapX={4}>
-        <Text fontSize="8xl">
+        <Text fontSize={{ base: "6xl", md: "8xl" }}>
           <FormatNumber value={parseFloat(value)} {...valueFormat} />
         </Text>
         {endAddon}
       </Group>
-      <Text fontSize="4xl">{label}</Text>
+      <Text fontSize={{ base: "2xl", md: "4xl" }}>{label}</Text>
     </Flex>
   );
 };

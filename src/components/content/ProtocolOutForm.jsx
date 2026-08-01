@@ -66,14 +66,14 @@ export const ProtocolOutForm = () => {
           input={{
             placeholder: "0%",
             maxWidth: "4.5ch",
-            fontSize: "4xl",
+            fontSize: { base: "3xl", md: "4xl" },
           }}
           fieldRoot={{
             flexDirection: "row",
             alignItems: "center",
           }}
           fieldLabel={{
-            fontStyle: "4xl",
+            fontStyle: { base: "3xl", md: "4xl" },
           }}
         />
         <NumberDisplay

@@ -29,12 +29,16 @@ export const NumberField = ({
         {...root}
       >
         <Group alignItems="flex-end" gapX={4}>
-          <NumberInput.Input fontSize="8xl" height="fit" {...input} />
+          <NumberInput.Input
+            fontSize={{ base: "6xl", md: "8xl" }}
+            height="fit"
+            {...input}
+          />
           {endAddon}
         </Group>
         <NumberInput.Control visibility="hidden" />
       </NumberInput.Root>
-      <Field.Label textStyle="4xl" {...fieldLabel}>
+      <Field.Label textStyle={{ base: "2xl", md: "4xl" }} {...fieldLabel}>
         {label}
       </Field.Label>
     </Field.Root>

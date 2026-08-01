@@ -19,8 +19,8 @@ export const ProtocolInForm = () => {
 
   return (
     <form onSubmit={onSubmitProtocolInForm}>
-      <Flex direction="column" alignItems="center" gapY={4}>
-        <Flex gapX={0} alignItems="center">
+      <Flex direction="column" gapY={4}>
+        <Flex gapX={0}>
           <NumberField
             id={PROTOCOL_KEY.ORM}
             label="One Rep Max"
@@ -64,16 +64,16 @@ export const ProtocolInForm = () => {
         />
         <Button
           type="submit"
-          size="2xl"
+          size={{ base: "xl", md: "2xl" }}
           minWidth="full"
           round="md"
-          marginTop={8}
-          fontSize="2xl"
+          marginTop={{ base: 4, md: 8 }}
+          fontSize={{ base: "xl", md: "2xl" }}
           variant="surface"
           colorPalette="cyan"
           disabled={!isValid}
         >
-          <LuBot style={{ width: "2.25rem", height: "2.25rem" }} />
+          <LuBot style={{ width: "1.5em", height: "1.5em" }} />
           Calculate
         </Button>
       </Flex>
