@@ -19,7 +19,7 @@ export const ProtocolInForm = () => {
 
   return (
     <form onSubmit={onSubmitProtocolInForm}>
-      <Flex direction="column" gapY={4}>
+      <Flex direction="column" gapY={4} minWith="full">
         <Flex gapX={0}>
           <NumberField
             id={PROTOCOL_KEY.ORM}
