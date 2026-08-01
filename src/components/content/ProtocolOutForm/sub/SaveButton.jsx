@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { LuCheck, LuSave } from "react-icons/lu";
 import { toaster } from "../../../../components/ui/toaster";
 import ProtocolContext from "../../../../contexts/protocolContext";
-import { useDelayedBoolean } from "../../../../hooks/useDelayedBoolean";
+import { useDelayedBoolean } from "../../../../hooks/useDelayedBoolean.js";
 import {
   STORAGE_KEY,
   useLocalStorage,

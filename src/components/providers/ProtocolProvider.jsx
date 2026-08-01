@@ -6,17 +6,18 @@ import {
   RELATIVE_MAX_FACTORS,
   UNIT,
 } from "../../util/constants";
-import { Layout } from "../structure/Layout";
 
-export const ProtocolProvider = () => {
-  const [data, setData] = useState({
-    [PROTOCOL_KEY.ORM]: "",
-    [PROTOCOL_KEY.RI]: "",
-    [PROTOCOL_KEY.REPS]: "",
-    [PROTOCOL_KEY.SETS]: "",
-    [PROTOCOL_KEY.WEIGHT]: "",
-    [PROTOCOL_KEY.UNITS]: UNIT.LB,
-  });
+export const ProtocolProvider = ({ protocol, children }) => {
+  const [data, setData] = useState(
+    protocol ?? {
+      [PROTOCOL_KEY.ORM]: "",
+      [PROTOCOL_KEY.RI]: "",
+      [PROTOCOL_KEY.REPS]: "",
+      [PROTOCOL_KEY.SETS]: "",
+      [PROTOCOL_KEY.WEIGHT]: "",
+      [PROTOCOL_KEY.UNITS]: UNIT.LB,
+    },
+  );
 
   const isValid =
     data[PROTOCOL_KEY.ORM] && data[PROTOCOL_KEY.RI] && data[PROTOCOL_KEY.REPS];
@@ -54,37 +55,38 @@ export const ProtocolProvider = () => {
     return false;
   };
 
-  const toggleUnits = (value) => {
+  const applyUnits = ({ data, value }) => {
     const unit = Object.values(UNIT).find((u) => u === value);
 
     if (!unit) {
-      return;
+      return data;
     }
 
-    setData((prev) => {
-      const newData = { ...prev, [PROTOCOL_KEY.UNITS]: unit };
-      let oneRepMax = parseFloat(prev[PROTOCOL_KEY.ORM]);
-      let weight = parseFloat(prev[PROTOCOL_KEY.WEIGHT]);
+    const newData = { ...data, [PROTOCOL_KEY.UNITS]: unit };
+    let oneRepMax = parseFloat(data[PROTOCOL_KEY.ORM]);
+    let weight = parseFloat(data[PROTOCOL_KEY.WEIGHT]);
 
-      if (!oneRepMax && !weight) {
-        return newData;
-      }
+    if (!oneRepMax && !weight) {
+      return newData;
+    }
 
-      if (unit === UNIT.KG) {
-        return {
-          ...newData,
-          [PROTOCOL_KEY.ORM]: oneRepMax ? JSON.stringify(oneRepMax / 2.2) : "",
-          [PROTOCOL_KEY.WEIGHT]: weight ? JSON.stringify(weight / 2.2) : "",
-        };
-      }
-
+    if (unit === UNIT.KG) {
       return {
         ...newData,
-        [PROTOCOL_KEY.ORM]: oneRepMax ? JSON.stringify(oneRepMax * 2.2) : "",
-        [PROTOCOL_KEY.WEIGHT]: weight ? JSON.stringify(weight * 2.2) : "",
+        [PROTOCOL_KEY.ORM]: oneRepMax ? JSON.stringify(oneRepMax / 2.2) : "",
+        [PROTOCOL_KEY.WEIGHT]: weight ? JSON.stringify(weight / 2.2) : "",
       };
-    });
+    }
+
+    return {
+      ...newData,
+      [PROTOCOL_KEY.ORM]: oneRepMax ? JSON.stringify(oneRepMax * 2.2) : "",
+      [PROTOCOL_KEY.WEIGHT]: weight ? JSON.stringify(weight * 2.2) : "",
+    };
   };
+
+  const setUnits = (value) =>
+    setData((prev) => applyUnits({ data: prev, value }));
 
   return (
     <ProtocolContext.Provider
@@ -92,10 +94,11 @@ export const ProtocolProvider = () => {
         state: [data, setData],
         isValid,
         loadProtocol,
-        toggleUnits,
+        setUnits,
+        applyUnits,
       }}
     >
-      <Layout />
+      {children}
     </ProtocolContext.Provider>
   );
 };

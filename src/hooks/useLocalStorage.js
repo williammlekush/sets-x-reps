@@ -24,8 +24,7 @@ export const useLocalStorage = () => {
 
   const pushToKey = (key, value) =>
     keyGuard(key, () => {
-      const storedValue = localStorage.getItem(key);
-      const values = JSON.parse(storedValue);
+      const values = JSON.parse(localStorage.getItem(key));
 
       if (!Array.isArray(values)) {
         return false;
@@ -55,5 +54,29 @@ export const useLocalStorage = () => {
       return true;
     });
 
-  return { getKeyValue, setKeyValue, deleteKey, pushToKey };
+  const replaceForKeyAtIndex = (key, value, index) =>
+    keyGuard(key, () => {
+      const values = JSON.parse(localStorage.getItem(key));
+
+      if (!Array.isArray(values)) {
+        return false;
+      }
+
+      if (index < 0 || index > values.length - 1) {
+        return false;
+      }
+
+      values[index] = value;
+
+      localStorage.setItem(key, JSON.stringify(values));
+      return true;
+    });
+
+  return {
+    getKeyValue,
+    setKeyValue,
+    deleteKey,
+    pushToKey,
+    replaceForKeyAtIndex,
+  };
 };

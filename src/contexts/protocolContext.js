@@ -4,7 +4,8 @@ const ProtocolContext = createContext({
   state: [],
   isValid: false,
   loadProtocol: () => {},
-  toggleUnits: () => {},
+  setUnits: () => {},
+  applyUnits: () => {},
 });
 
 export default ProtocolContext;
