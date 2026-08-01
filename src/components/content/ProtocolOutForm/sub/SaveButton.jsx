@@ -1,8 +1,9 @@
 import { Button, Text } from "@chakra-ui/react";
 import { useContext } from "react";
-import { LuSave } from "react-icons/lu";
+import { LuCheck, LuSave } from "react-icons/lu";
 import { toaster } from "../../../../components/ui/toaster";
 import ProtocolContext from "../../../../contexts/protocolContext";
+import { useDelayedBoolean } from "../../../../hooks/useDelayedBoolean";
 import {
   STORAGE_KEY,
   useLocalStorage,
@@ -16,12 +17,15 @@ export const SaveButton = () => {
 
   const { setKeyValue, pushToKey } = useLocalStorage();
 
+  const [showSaveSuccess, triggerShowSaveSuccess] = useDelayedBoolean(2000);
+
   const onClickSave = () => {
     const key = STORAGE_KEY.PROTOCOLS;
     try {
       if (!pushToKey(key, data)) {
         setKeyValue(key, [data]);
       }
+      triggerShowSaveSuccess();
     } catch {
       toaster.create({
         title: "Storage Full",
@@ -54,8 +58,13 @@ export const SaveButton = () => {
       round="md"
       colorPalette="cyan"
     >
-      <LuSave style={{ width: "1.25em", height: "1.25em" }} />
-      Save
+      {showSaveSuccess ? (
+        <LuCheck style={{ width: "1.25em", height: "1.25em" }} />
+      ) : (
+        <LuSave style={{ width: "1.25em", height: "1.25em" }} />
+      )}
+      {showSaveSuccess ? "Saved" : "Save"}
     </Button>
   );
+  S;
 };
