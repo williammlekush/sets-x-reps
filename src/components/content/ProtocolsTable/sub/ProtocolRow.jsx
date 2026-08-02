@@ -1,7 +1,7 @@
 import { FormatNumber, Table } from "@chakra-ui/react";
 import { useContext } from "react";
 import ProtocolContext from "../../../../contexts/protocolContext";
-import { PROTOCOL_KEY } from "../../../../util/constants";
+import { PROTOCOL_KEY, TBL_COL_PROPS } from "../../../../util/constants";
 import { UnitToggleCell } from "./UnitToggleCell";
 
 export const ProtocolRow = ({ index }) => {
@@ -11,7 +11,9 @@ export const ProtocolRow = ({ index }) => {
 
   return (
     <Table.Row key={index}>
-      <Table.Cell textAlign="center">{data[PROTOCOL_KEY.RI]}</Table.Cell>
+      <Table.Cell {...TBL_COL_PROPS} minWidth="40px">
+        {data[PROTOCOL_KEY.RI]}
+      </Table.Cell>
       <UnitToggleCell
         index={index}
         number={
@@ -23,11 +25,11 @@ export const ProtocolRow = ({ index }) => {
           />
         }
       />
-      <Table.Cell textAlign="center">{data[PROTOCOL_KEY.REPS]}</Table.Cell>
+      <Table.Cell {...TBL_COL_PROPS}>{data[PROTOCOL_KEY.REPS]}</Table.Cell>
       <Table.Cell textAlign="center" padding={0}>
         x
       </Table.Cell>
-      <Table.Cell textAlign="center">{data[PROTOCOL_KEY.SETS]}</Table.Cell>
+      <Table.Cell {...TBL_COL_PROPS}>{data[PROTOCOL_KEY.SETS]}</Table.Cell>
       <Table.Cell textAlign="center" padding={0}>
         x
       </Table.Cell>

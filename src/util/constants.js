@@ -18,6 +18,11 @@ export const PROTOCOL_KEY = {
   UNITS: "units",
 };
 
+export const TBL_COL_PROPS = {
+  paddingX: 1,
+  textAlign: "center",
+};
+
 export const RELATIVE_MAX_FACTORS = [
   100, 97, 94, 92, 89, 86, 83, 81, 78, 75, 73, 71,
 ];

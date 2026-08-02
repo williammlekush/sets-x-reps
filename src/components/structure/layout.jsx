@@ -11,7 +11,7 @@ export const Layout = () => {
       paddingTop={{ base: 2, md: "10vh" }}
       paddingX={12}
       flexDirection="column"
-      borderWidth="1"
+      border="1px solid red"
     >
       <Header />
       <Outlet />

@@ -5,7 +5,7 @@ import {
   STORAGE_KEY,
   useLocalStorage,
 } from "../../../../hooks/useLocalStorage";
-import { PROTOCOL_KEY, UNIT } from "../../../../util/constants";
+import { PROTOCOL_KEY, TBL_COL_PROPS, UNIT } from "../../../../util/constants";
 import { toaster } from "../../../ui/toaster";
 
 export const UnitToggleCell = ({ index, number }) => {
@@ -48,8 +48,13 @@ export const UnitToggleCell = ({ index, number }) => {
   };
 
   return (
-    <Table.Cell textAlign="center">
-      <Button onClick={onClickUnitToggle} variant="subtle" rounded="full">
+    <Table.Cell {...TBL_COL_PROPS} minWidth="64px">
+      <Button
+        onClick={onClickUnitToggle}
+        variant="subtle"
+        rounded="full"
+        paddingX={3}
+      >
         {number}
         {units}
       </Button>
