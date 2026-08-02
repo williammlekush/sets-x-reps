@@ -1,13 +1,13 @@
 import { Button, Clipboard } from "@chakra-ui/react";
 import { useContext } from "react";
-import ProtocolContext from "../../../../contexts/protocolContext";
+import CalculatorContext from "../../../../contexts/calculatorContext";
 import { PROTOCOL_KEY } from "../../../../util/constants";
 
 export const CopyButton = () => {
   const {
     state: [data, _],
     isValid,
-  } = useContext(ProtocolContext);
+  } = useContext(CalculatorContext);
 
   return (
     <Clipboard.Root

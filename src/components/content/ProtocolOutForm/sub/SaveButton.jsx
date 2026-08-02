@@ -2,7 +2,7 @@ import { Button, Text } from "@chakra-ui/react";
 import { useContext } from "react";
 import { LuCheck, LuSave } from "react-icons/lu";
 import { toaster } from "../../../../components/ui/toaster";
-import ProtocolContext from "../../../../contexts/protocolContext";
+import CalculatorContext from "../../../../contexts/calculatorContext";
 import { useDelayedBoolean } from "../../../../hooks/useDelayedBoolean.js";
 import {
   STORAGE_KEY,
@@ -13,7 +13,7 @@ export const SaveButton = () => {
   const {
     state: [data, _],
     isValid,
-  } = useContext(ProtocolContext);
+  } = useContext(CalculatorContext);
 
   const { setKeyValue, pushToKey } = useLocalStorage();
 

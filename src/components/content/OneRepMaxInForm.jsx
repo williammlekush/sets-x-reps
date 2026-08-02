@@ -1,29 +1,38 @@
 import { Flex } from "@chakra-ui/react";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import CalculatorContext from "../../contexts/calculatorContext";
-import { PROTOCOL_KEY } from "../../util/constants";
+import { ORM_KEY } from "../../util/constants";
 import { NumberField } from "../shared/NumberField";
 import { SubmitCalculationButton } from "../shared/SubmitCalculationButton";
 import { UnitToggle } from "../shared/UnitToggle";
 
-export const ProtocolInForm = () => {
+export const OneRepMaxInForm = () => {
   const { isValid } = useContext(CalculatorContext);
-
-  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    navigate("protocol-results");
   };
 
   return (
     <form onSubmit={onSubmit}>
       <Flex direction="column" gapY={4} minWith="full">
+        <NumberField
+          id={ORM_KEY.REPS}
+          label="Top Set Reps"
+          root={{
+            min: 1,
+            max: 99,
+            formatOptions: { maximumFractionDigits: 0 },
+          }}
+          input={{
+            placeholder: "##",
+            maxWidth: "2.2ch",
+          }}
+        />
         <Flex gapX={0}>
           <NumberField
-            id={PROTOCOL_KEY.ORM}
-            label="One Rep Max"
+            id={ORM_KEY.WEIGHT}
+            label="Top Set Weight"
             root={{
               min: 1,
               max: 999,
@@ -36,32 +45,6 @@ export const ProtocolInForm = () => {
             endAddon={<UnitToggle />}
           />
         </Flex>
-        <NumberField
-          id={PROTOCOL_KEY.RI}
-          label="Relative Intensity"
-          root={{
-            min: 0,
-            max: 1,
-            formatOptions: { style: "percent" },
-          }}
-          input={{
-            placeholder: "0%",
-            maxWidth: "4.5ch",
-          }}
-        />
-        <NumberField
-          id={PROTOCOL_KEY.REPS}
-          label="Reps per Set"
-          root={{
-            min: 1,
-            max: 12,
-            formatOptions: { maximumFractionDigits: 0 },
-          }}
-          input={{
-            placeholder: "##",
-            maxWidth: "2.2ch",
-          }}
-        />
         <SubmitCalculationButton />
       </Flex>
     </form>

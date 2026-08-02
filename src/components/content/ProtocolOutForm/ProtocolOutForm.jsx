@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ProtocolContext from "../../../contexts/protocolContext";
+import CalculatorContext from "../../../contexts/calculatorContext";
 import { PROTOCOL_KEY, UNIT } from "../../../util/constants";
 import { NumberDisplay } from "../../shared/NumberDisplay";
 import { NumberField } from "../../shared/NumberField";
@@ -13,13 +13,13 @@ import { SaveButton } from "./sub/SaveButton";
 export const ProtocolOutForm = () => {
   const {
     state: [data, setData],
-    loadProtocol,
-  } = useContext(ProtocolContext);
+    calculate,
+  } = useContext(CalculatorContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loadProtocol()) {
+    if (!calculate()) {
       navigate("/");
     }
   }, []);
@@ -27,13 +27,13 @@ export const ProtocolOutForm = () => {
   const onValueChangeReps = (e) => {
     const value = e.value;
     setData((prev) => ({ ...prev, [PROTOCOL_KEY.REPS]: value }));
-    loadProtocol({ [PROTOCOL_KEY.REPS]: value });
+    calculate({ [PROTOCOL_KEY.REPS]: value });
   };
 
   const onValueChangeRelativeIntensity = (e) => {
     const value = e.value;
     setData((prev) => ({ ...prev, [PROTOCOL_KEY.RI]: value }));
-    loadProtocol({ [PROTOCOL_KEY.RI]: value });
+    calculate({ [PROTOCOL_KEY.RI]: value });
   };
 
   return (

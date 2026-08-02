@@ -1,8 +1,10 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { ROUTE } from "../../util/constants";
+import { OneRepMaxInForm } from "../content/OneRepMaxInForm";
 import { ProtocolInForm } from "../content/ProtocolInForm";
 import { ProtocolOutForm } from "../content/ProtocolOutForm/ProtocolOutForm";
 import { ProtocolsTable } from "../content/ProtocolsTable/ProtocolsTable";
+import { OneRepMaxProvider } from "../providers/OneRepMaxProvider";
 import { ProtocolProvider } from "../providers/ProtocolProvider";
 import { Layout } from "./layout";
 
@@ -22,6 +24,15 @@ const Router = () => {
         </Route>
         <Route element={<Layout />}>
           <Route path={ROUTE.SAVED_PROTOCOLS} element={<ProtocolsTable />} />
+        </Route>
+        <Route
+          element={
+            <OneRepMaxProvider>
+              <Layout />
+            </OneRepMaxProvider>
+          }
+        >
+          <Route path={ROUTE.ORM} element={<OneRepMaxInForm />} />
         </Route>
       </Routes>
     </HashRouter>
