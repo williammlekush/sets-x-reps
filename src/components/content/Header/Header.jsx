@@ -8,7 +8,12 @@ export const Header = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const hasBackButton = [ROUTE.PROTOCOL_RESULTS].includes(pathname);
+  const hasBackButton = [ROUTE.PROTOCOL_RESULTS, ROUTE.ORM_RESULTS].includes(
+    pathname,
+  );
+
+  const onClickBack = () =>
+    navigate(pathname === ROUTE.ORM_RESULTS ? ROUTE.ORM : ROUTE.INDEX);
 
   return (
     <HStack
@@ -21,7 +26,7 @@ export const Header = () => {
       {hasBackButton ? (
         <Button
           aria-label="Return to calculator"
-          onClick={() => navigate(ROUTE.INDEX)}
+          onClick={onClickBack}
           variant="ghost"
           fontSize={{ base: "lg", md: "xl" }}
           size={{ base: "lg", md: "xl" }}

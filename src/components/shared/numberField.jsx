@@ -38,9 +38,11 @@ export const NumberField = ({
         </Group>
         <NumberInput.Control visibility="hidden" />
       </NumberInput.Root>
-      <Field.Label textStyle={{ base: "2xl", md: "4xl" }} {...fieldLabel}>
-        {label}
-      </Field.Label>
+      {label && (
+        <Field.Label textStyle={{ base: "2xl", md: "4xl" }} {...fieldLabel}>
+          {label}
+        </Field.Label>
+      )}
     </Field.Root>
   );
 };

@@ -6,13 +6,13 @@ export const OneRepMaxProvider = ({ protocol, children }) => {
   const [data, setData] = useState(
     protocol ?? {
       [ORM_KEY.REPS]: "",
-      [ORM_KEY.SETS]: "",
+      [ORM_KEY.WEIGHT]: "",
       [ORM_KEY.ORM]: "",
       [ORM_KEY.UNITS]: UNIT.LB,
     },
   );
 
-  const isValid = data[ORM_KEY.REPS] && data[ORM_KEY.SETS];
+  const isValid = data[ORM_KEY.REPS] && data[ORM_KEY.WEIGHT];
 
   const calculate = ({
     reps = parseFloat(data[ORM_KEY.REPS]),
@@ -22,8 +22,13 @@ export const OneRepMaxProvider = ({ protocol, children }) => {
       return false;
     }
 
-    const oneRepMax = (reps * weight) / 100; //TODO: MAKE IT REAL
-
+    /**
+     * title: Accuracy of Seven Equations for Predicting 1-RM Performance of Apparently Healthy, Sedentary Older Adults
+     * authors: Terry M. Wood, Gianni F. Maddalozzo, and Rod A. Harter
+     * organization: Department of Exercise and sport Science, Oregon State University
+     * link: source: https://www.researchgate.net/publication/243666838_Accuracy_of_Seven_Equations_for_Predicting_1-RM_Performance_of_Apparently_Healthy_Sedentary_Older_Adults
+     * */
+    const oneRepMax = weight / (1.0278 - 0.0278 * reps);
     setData((prev) => ({ ...prev, [ORM_KEY.ORM]: oneRepMax }));
     return true;
   };
@@ -37,8 +42,9 @@ export const OneRepMaxProvider = ({ protocol, children }) => {
 
     const newData = { ...data, [ORM_KEY.UNITS]: unit };
     let oneRepMax = parseFloat(data[ORM_KEY.ORM]);
+    let weight = parseFloat(data[ORM_KEY.WEIGHT]);
 
-    if (!oneRepMax) {
+    if (!oneRepMax && !weight) {
       return newData;
     }
 
@@ -46,12 +52,14 @@ export const OneRepMaxProvider = ({ protocol, children }) => {
       return {
         ...newData,
         [ORM_KEY.ORM]: oneRepMax ? JSON.stringify(oneRepMax / 2.2) : "",
+        [ORM_KEY.WEIGHT]: weight ? JSON.stringify(oneRepMax / 2.2) : "",
       };
     }
 
     return {
       ...newData,
       [ORM_KEY.ORM]: oneRepMax ? JSON.stringify(oneRepMax * 2.2) : "",
+      [ORM_KEY.WEIGHT]: weight ? JSON.stringify(oneRepMax * 2.2) : "",
     };
   };
 

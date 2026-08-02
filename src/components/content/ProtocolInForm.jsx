@@ -1,20 +1,16 @@
 import { Flex } from "@chakra-ui/react";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import CalculatorContext from "../../contexts/calculatorContext";
-import { PROTOCOL_KEY } from "../../util/constants";
+import { PROTOCOL_KEY, ROUTE } from "../../util/constants";
 import { NumberField } from "../shared/NumberField";
 import { SubmitCalculationButton } from "../shared/SubmitCalculationButton";
 import { UnitToggle } from "../shared/UnitToggle";
 
 export const ProtocolInForm = () => {
-  const { isValid } = useContext(CalculatorContext);
-
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    navigate("protocol-results");
+    navigate(ROUTE.PROTOCOL_RESULTS);
   };
 
   return (

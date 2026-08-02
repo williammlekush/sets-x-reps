@@ -1,16 +1,16 @@
 import { Flex } from "@chakra-ui/react";
-import { useContext } from "react";
-import CalculatorContext from "../../contexts/calculatorContext";
-import { ORM_KEY } from "../../util/constants";
+import { useNavigate } from "react-router-dom";
+import { ORM_KEY, ROUTE } from "../../util/constants";
 import { NumberField } from "../shared/NumberField";
 import { SubmitCalculationButton } from "../shared/SubmitCalculationButton";
 import { UnitToggle } from "../shared/UnitToggle";
 
 export const OneRepMaxInForm = () => {
-  const { isValid } = useContext(CalculatorContext);
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
+    navigate(ROUTE.ORM_RESULTS);
   };
 
   return (

@@ -2,12 +2,12 @@ import { Flex } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CalculatorContext from "../../../contexts/calculatorContext";
-import { PROTOCOL_KEY, UNIT } from "../../../util/constants";
+import { PROTOCOL_KEY, ROUTE, UNIT } from "../../../util/constants";
+import { CopyButton } from "../../shared/CopyButton";
 import { NumberDisplay } from "../../shared/NumberDisplay";
 import { NumberField } from "../../shared/NumberField";
 import { UnitToggle } from "../../shared/UnitToggle";
 import { X } from "../../shared/X";
-import { CopyButton } from "./sub/CopyButton";
 import { SaveButton } from "./sub/SaveButton";
 
 export const ProtocolOutForm = () => {
@@ -20,7 +20,7 @@ export const ProtocolOutForm = () => {
 
   useEffect(() => {
     if (!calculate()) {
-      navigate("/");
+      navigate(ROUTE.INDEX);
     }
   }, []);
 
@@ -82,7 +82,7 @@ export const ProtocolOutForm = () => {
             alignItems: "center",
           }}
           fieldLabel={{
-            fontStyle: { base: "3xl", md: "4xl" },
+            textStyle: { base: "3xl", md: "4xl" },
           }}
         />
         <NumberDisplay
@@ -97,7 +97,14 @@ export const ProtocolOutForm = () => {
         />
         <Flex direction="column" minWidth="full" gapY={4} marginTop={8}>
           <SaveButton />
-          <CopyButton />
+          <CopyButton
+            value={
+              `${data[PROTOCOL_KEY.SETS]} ${PROTOCOL_KEY.SETS}` +
+              ` x ${data[PROTOCOL_KEY.REPS]} ${PROTOCOL_KEY.REPS}` +
+              ` x ${Math.round((4 * parseFloat(data[PROTOCOL_KEY.WEIGHT])) / 4).toFixed(2)} ${data[PROTOCOL_KEY.UNITS]}` +
+              ` (${data[PROTOCOL_KEY.RI]})`
+            }
+          />
         </Flex>
       </Flex>
     </Flex>
