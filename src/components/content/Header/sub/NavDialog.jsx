@@ -1,8 +1,8 @@
 import { Dialog, IconButton, Portal, useDisclosure } from "@chakra-ui/react";
 import { useContext } from "react";
 import { LuMenu } from "react-icons/lu";
-import DimensionsContext from "../../../contexts/dimensionsContext";
-import { ROUTE } from "../../../util/constants";
+import DimensionsContext from "../../../../contexts/dimensionsContext";
+import { ROUTE } from "../../../../util/constants";
 import { NavButton } from "./NavButton";
 
 export const NavDialog = () => {

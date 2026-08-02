@@ -2,7 +2,7 @@ import { Container } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 import DimensionsContext from "../../contexts/dimensionsContext";
-import { Header } from "../content/Header";
+import { Header } from "../content/Header/Header";
 import { Toaster } from "../ui/toaster";
 
 export const Layout = () => {

@@ -1,8 +1,8 @@
 import { Button, HStack, IconButton } from "@chakra-ui/react";
 import { LuArrowLeft, LuCircleHelp } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ROUTE } from "../../util/constants";
-import { NavDialog } from "./Header/NavDialog";
+import { ROUTE } from "../../../util/constants";
+import { NavDialog } from "./sub/NavDialog";
 
 export const Header = () => {
   const { pathname } = useLocation();
