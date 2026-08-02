@@ -1,6 +1,7 @@
 export const ROUTE = {
   INDEX: "/",
   PROTOCOL_RESULTS: "/protocol-results",
+  SAVED_PROTOCOLS: "/protocol-saved",
 };
 
 export const UNIT = {
@@ -15,6 +16,11 @@ export const PROTOCOL_KEY = {
   SETS: "sets",
   WEIGHT: "weights",
   UNITS: "units",
+};
+
+export const TBL_COL_PROPS = {
+  paddingX: 1,
+  textAlign: "center",
 };
 
 export const RELATIVE_MAX_FACTORS = [
