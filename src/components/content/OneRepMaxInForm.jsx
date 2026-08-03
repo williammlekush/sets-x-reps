@@ -21,7 +21,7 @@ export const OneRepMaxInForm = () => {
           label="Top Set Reps"
           root={{
             min: 1,
-            max: 99,
+            max: 20,
             formatOptions: { maximumFractionDigits: 0 },
           }}
           input={{

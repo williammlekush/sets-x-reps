@@ -59,7 +59,7 @@ export const OneRepMaxOutForm = () => {
               id={ORM_KEY.REPS}
               root={{
                 min: 1,
-                max: 99,
+                max: 20,
                 formatOptions: { maximumFractionDigits: 0 },
                 onValueChange: onValueChangeReps,
               }}
