@@ -14,7 +14,7 @@ export const CopyButton = ({ value }) => {
           size={{ base: "xl", md: "2xl" }}
           fontSize={{ base: "xl", md: "2xl" }}
           minWidth="full"
-          round="md"
+          rounded="md"
           colorPalette="cyan"
         >
           <Clipboard.Indicator />

@@ -2,6 +2,7 @@ import { PROTOCOL_KEY } from "../util/constants";
 
 export const STORAGE_KEY = {
   PROTOCOLS: "protocols",
+  ORMS: "one-rep-maxes",
 };
 
 export const useLocalStorage = () => {

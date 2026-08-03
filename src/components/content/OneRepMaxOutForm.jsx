@@ -1,13 +1,15 @@
-import { Button, Fieldset, Flex } from "@chakra-ui/react";
+import { Fieldset, Flex } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
-import { LuArrowRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import CalculatorContext from "../../contexts/calculatorContext";
-import { ORM_KEY, ROUTE, SHARED_KEY } from "../../util/constants";
+import { STORAGE_KEY } from "../../hooks/useLocalStorage";
+import { ORM_KEY, ROUTE } from "../../util/constants";
 import { CopyButton } from "../shared/CopyButton";
 import { NumberDisplay } from "../shared/NumberDisplay";
 import { NumberField } from "../shared/NumberField";
+import { SaveButton } from "../shared/SaveButton";
 import { UnitToggle } from "../shared/UnitToggle";
+import { UseORMInProtocolButton } from "../shared/UseORMInProtcolButton";
 import { X } from "../shared/X";
 
 export const OneRepMaxOutForm = () => {
@@ -36,14 +38,6 @@ export const OneRepMaxOutForm = () => {
     setData((prev) => ({ ...prev, [ORM_KEY.WEIGHT]: value }));
     calculate({ [ORM_KEY.WEIGHT]: value });
   };
-
-  const onClickUse = () =>
-    navigate(ROUTE.INDEX, {
-      state: {
-        [SHARED_KEY.ORM]: data[SHARED_KEY.ORM],
-        [SHARED_KEY.UNITS]: data[SHARED_KEY.UNITS],
-      },
-    });
 
   return (
     <Flex direction="column" gapY={4} minWith="full">
@@ -107,20 +101,8 @@ export const OneRepMaxOutForm = () => {
         endAddon={<UnitToggle />}
       />
       <Flex direction="column" minWidth="full" gapY={4} marginTop={8}>
-        <Button
-          onClick={onClickUse}
-          aria-label="Open the new exercise protocol calculator with this one rep max"
-          variant="surface"
-          disabled={!isValid}
-          size={{ base: "xl", md: "2xl" }}
-          fontSize={{ base: "xl", md: "2xl" }}
-          minWidth="full"
-          round="md"
-          colorPalette="cyan"
-        >
-          Use in Exercise Protocol
-          <LuArrowRight style={{ width: "1.5em", height: "1.5em" }} />
-        </Button>
+        <UseORMInProtocolButton />
+        <SaveButton dataKey={STORAGE_KEY.ORMS} />
         <CopyButton
           value={
             `${parseFloat(data[ORM_KEY.ORM]).toFixed(0)}${data[ORM_KEY.UNITS]}` +

@@ -1,9 +1,10 @@
 export const ROUTE = {
   INDEX: "/",
   PROTOCOL_RESULTS: "/protocol-results",
-  SAVED_PROTOCOLS: "/protocol-saved",
+  PROTOCOL_SAVED: "/protocol-saved",
   ORM: "/orm",
   ORM_RESULTS: "/orm-results",
+  ORM_SAVED: "/orm-saved",
 };
 
 export const UNIT = {

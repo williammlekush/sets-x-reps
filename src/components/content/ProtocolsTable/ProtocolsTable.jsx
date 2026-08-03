@@ -2,7 +2,7 @@ import { Table } from "@chakra-ui/react";
 import { STORAGE_KEY, useLocalStorage } from "../../../hooks/useLocalStorage";
 import { TBL_COL_PROPS } from "../../../util/constants";
 import { ProtocolProvider } from "../../providers/ProtocolProvider";
-import { ProtocolRow } from "./sub/ProtocolRow";
+import { ProtocolRow } from "./ProtocolRow";
 
 export const ProtocolsTable = () => {
   const { getKeyValue } = useLocalStorage();

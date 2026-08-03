@@ -1,15 +1,12 @@
 import { Button, Text } from "@chakra-ui/react";
 import { useContext } from "react";
 import { LuCheck, LuSave } from "react-icons/lu";
-import CalculatorContext from "../../../../contexts/calculatorContext";
-import { useDelayedBoolean } from "../../../../hooks/useDelayedBoolean.js";
-import {
-  STORAGE_KEY,
-  useLocalStorage,
-} from "../../../../hooks/useLocalStorage";
-import { toaster } from "../../../ui/toaster";
+import CalculatorContext from "../../contexts/calculatorContext";
+import { useDelayedBoolean } from "../../hooks/useDelayedBoolean.js";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { toaster } from "../ui/toaster";
 
-export const SaveButton = () => {
+export const SaveButton = ({ dataKey }) => {
   const {
     state: [data, _],
     isValid,
@@ -20,10 +17,9 @@ export const SaveButton = () => {
   const [showSaveSuccess, triggerShowSaveSuccess] = useDelayedBoolean(2000);
 
   const onClickSave = () => {
-    const key = STORAGE_KEY.PROTOCOLS;
     try {
-      if (!pushToKey(key, data)) {
-        setKeyValue(key, [data]);
+      if (!pushToKey(dataKey, data)) {
+        setKeyValue(dataKey, [data]);
       }
       triggerShowSaveSuccess();
     } catch {
@@ -34,10 +30,7 @@ export const SaveButton = () => {
         closable: true,
         description: (
           <>
-            <Text>
-              You've reached the limit for saved exercise protocols on this
-              device.
-            </Text>
+            <Text>You've reached the limit for saved data on this device.</Text>
             <Text>
               We are working on expanding the limit in a future update.
             </Text>
