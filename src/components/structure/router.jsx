@@ -8,7 +8,7 @@ import { ProtocolOutForm } from "../content/ProtocolOutForm";
 import { ProtocolsTable } from "../content/ProtocolsTable/ProtocolsTable";
 import { OneRepMaxProvider } from "../providers/OneRepMaxProvider";
 import { ProtocolProvider } from "../providers/ProtocolProvider";
-import { Layout } from "./layout";
+import { Layout } from "./Layout";
 
 const Router = () => {
   return (
