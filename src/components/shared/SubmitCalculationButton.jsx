@@ -11,7 +11,7 @@ export const SubmitCalculationButton = () => {
       type="submit"
       size={{ base: "xl", md: "2xl" }}
       minWidth="full"
-      round="md"
+      rounded="md"
       marginTop={{ base: 4, md: 8 }}
       fontSize={{ base: "xl", md: "2xl" }}
       variant="surface"

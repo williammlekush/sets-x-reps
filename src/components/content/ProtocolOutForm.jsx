@@ -1,14 +1,15 @@
 import { Flex } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import CalculatorContext from "../../../contexts/calculatorContext";
-import { PROTOCOL_KEY, ROUTE, UNIT } from "../../../util/constants";
-import { CopyButton } from "../../shared/CopyButton";
-import { NumberDisplay } from "../../shared/NumberDisplay";
-import { NumberField } from "../../shared/NumberField";
-import { UnitToggle } from "../../shared/UnitToggle";
-import { X } from "../../shared/X";
-import { SaveButton } from "./sub/SaveButton";
+import CalculatorContext from "../../contexts/calculatorContext";
+import { STORAGE_KEY } from "../../hooks/useLocalStorage";
+import { PROTOCOL_KEY, ROUTE, UNIT } from "../../util/constants";
+import { CopyButton } from "../shared/CopyButton";
+import { NumberDisplay } from "../shared/NumberDisplay";
+import { NumberField } from "../shared/NumberField";
+import { SaveButton } from "../shared/SaveButton";
+import { UnitToggle } from "../shared/UnitToggle";
+import { X } from "../shared/X";
 
 export const ProtocolOutForm = () => {
   const {
@@ -96,7 +97,7 @@ export const ProtocolOutForm = () => {
           endAddon={<UnitToggle />}
         />
         <Flex direction="column" minWidth="full" gapY={4} marginTop={8}>
-          <SaveButton />
+          <SaveButton dataKey={STORAGE_KEY.PROTOCOLS} />
           <CopyButton
             value={
               `${data[PROTOCOL_KEY.SETS]} ${PROTOCOL_KEY.SETS}` +

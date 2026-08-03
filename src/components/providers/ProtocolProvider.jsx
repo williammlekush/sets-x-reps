@@ -12,8 +12,8 @@ import {
 export const ProtocolProvider = ({ protocol, children }) => {
   const location = useLocation();
 
-  const orm = location.state?.[SHARED_KEY.ORM] || {};
-  const units = location.state?.[SHARED_KEY.UNITS] || {};
+  const orm = location.state?.[SHARED_KEY.ORM];
+  const units = location.state?.[SHARED_KEY.UNITS];
 
   const [data, setData] = useState(
     protocol ?? {

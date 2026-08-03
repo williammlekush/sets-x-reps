@@ -43,9 +43,11 @@ export const Header = () => {
           ? "Exercise Protocol"
           : [ROUTE.ORM, ROUTE.ORM_RESULTS].includes(pathname)
             ? "One Rep Max"
-            : pathname === ROUTE.SAVED_PROTOCOLS
+            : pathname === ROUTE.PROTOCOL_SAVED
               ? "Saved Protocols"
-              : ""}
+              : pathname === ROUTE.ORM_SAVED
+                ? "Saved One Rep Maxes"
+                : ""}
       </Text>
       <IconButton
         aria-label="Open Help"

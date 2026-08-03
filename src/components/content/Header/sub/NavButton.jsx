@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export const NavButton = ({ label, route, isOnRouteCallback, ...rest }) => {
+export const NavButton = ({ label, route, callback, ...rest }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -18,11 +18,10 @@ export const NavButton = ({ label, route, isOnRouteCallback, ...rest }) => {
       borderWidth="1px"
       borderColor="cyan.400"
       onClick={() => {
-        if (isOnRoute) {
-          isOnRouteCallback();
-          return;
+        if (!isOnRoute) {
+          navigate(route);
         }
-        navigate(route);
+        callback();
       }}
       {...rest}
     >

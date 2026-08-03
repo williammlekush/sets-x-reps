@@ -52,14 +52,14 @@ export const OneRepMaxProvider = ({ protocol, children }) => {
       return {
         ...newData,
         [ORM_KEY.ORM]: oneRepMax ? JSON.stringify(oneRepMax / 2.2) : "",
-        [ORM_KEY.WEIGHT]: weight ? JSON.stringify(oneRepMax / 2.2) : "",
+        [ORM_KEY.WEIGHT]: weight ? JSON.stringify(weight / 2.2) : "",
       };
     }
 
     return {
       ...newData,
       [ORM_KEY.ORM]: oneRepMax ? JSON.stringify(oneRepMax * 2.2) : "",
-      [ORM_KEY.WEIGHT]: weight ? JSON.stringify(oneRepMax * 2.2) : "",
+      [ORM_KEY.WEIGHT]: weight ? JSON.stringify(weight * 2.2) : "",
     };
   };
 
