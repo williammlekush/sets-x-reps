@@ -1,6 +1,6 @@
 import { Field, Group, NumberInput } from "@chakra-ui/react";
 import { useContext } from "react";
-import ProtocolContext from "../../contexts/protocolContext";
+import CalculatorContext from "../../contexts/calculatorContext";
 
 export const NumberField = ({
   id,
@@ -13,7 +13,7 @@ export const NumberField = ({
 }) => {
   const {
     state: [data, setData],
-  } = useContext(ProtocolContext);
+  } = useContext(CalculatorContext);
 
   const value = data[id];
 
@@ -38,9 +38,11 @@ export const NumberField = ({
         </Group>
         <NumberInput.Control visibility="hidden" />
       </NumberInput.Root>
-      <Field.Label textStyle={{ base: "2xl", md: "4xl" }} {...fieldLabel}>
-        {label}
-      </Field.Label>
+      {label && (
+        <Field.Label textStyle={{ base: "2xl", md: "4xl" }} {...fieldLabel}>
+          {label}
+        </Field.Label>
+      )}
     </Field.Root>
   );
 };

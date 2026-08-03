@@ -1,11 +1,11 @@
 import { createContext } from "react";
 
-const ProtocolContext = createContext({
+const CalculatorContext = createContext({
   state: [],
   isValid: false,
-  loadProtocol: () => {},
+  calculate: () => {},
   setUnits: () => {},
   applyUnits: () => {},
 });
 
-export default ProtocolContext;
+export default CalculatorContext;

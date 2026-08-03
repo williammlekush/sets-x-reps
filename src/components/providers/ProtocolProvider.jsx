@@ -1,28 +1,35 @@
 import { useState } from "react";
-import ProtocolContext from "../../contexts/protocolContext";
+import { useLocation } from "react-router-dom";
+import CalculatorContext from "../../contexts/calculatorContext";
 import {
   INTENSITY_TO_PROTOCOL,
   PROTOCOL_KEY,
   RELATIVE_MAX_FACTORS,
+  SHARED_KEY,
   UNIT,
 } from "../../util/constants";
 
 export const ProtocolProvider = ({ protocol, children }) => {
+  const location = useLocation();
+
+  const orm = location.state?.[SHARED_KEY.ORM] || {};
+  const units = location.state?.[SHARED_KEY.UNITS] || {};
+
   const [data, setData] = useState(
     protocol ?? {
-      [PROTOCOL_KEY.ORM]: "",
+      [PROTOCOL_KEY.ORM]: orm ?? "",
       [PROTOCOL_KEY.RI]: "",
       [PROTOCOL_KEY.REPS]: "",
       [PROTOCOL_KEY.SETS]: "",
       [PROTOCOL_KEY.WEIGHT]: "",
-      [PROTOCOL_KEY.UNITS]: UNIT.LB,
+      [PROTOCOL_KEY.UNITS]: units || UNIT.LB,
     },
   );
 
   const isValid =
     data[PROTOCOL_KEY.ORM] && data[PROTOCOL_KEY.RI] && data[PROTOCOL_KEY.REPS];
 
-  const loadProtocol = ({
+  const calculate = ({
     reps = parseFloat(data[PROTOCOL_KEY.REPS]),
     relativeIntensity = parseFloat(data[PROTOCOL_KEY.RI]),
   } = {}) => {
@@ -89,16 +96,16 @@ export const ProtocolProvider = ({ protocol, children }) => {
     setData((prev) => applyUnits({ data: prev, value }));
 
   return (
-    <ProtocolContext.Provider
+    <CalculatorContext.Provider
       value={{
         state: [data, setData],
         isValid,
-        loadProtocol,
+        calculate,
         setUnits,
         applyUnits,
       }}
     >
       {children}
-    </ProtocolContext.Provider>
+    </CalculatorContext.Provider>
   );
 };

@@ -1,39 +1,39 @@
 import { Flex } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ProtocolContext from "../../../contexts/protocolContext";
-import { PROTOCOL_KEY, UNIT } from "../../../util/constants";
+import CalculatorContext from "../../../contexts/calculatorContext";
+import { PROTOCOL_KEY, ROUTE, UNIT } from "../../../util/constants";
+import { CopyButton } from "../../shared/CopyButton";
 import { NumberDisplay } from "../../shared/NumberDisplay";
 import { NumberField } from "../../shared/NumberField";
 import { UnitToggle } from "../../shared/UnitToggle";
 import { X } from "../../shared/X";
-import { CopyButton } from "./sub/CopyButton";
 import { SaveButton } from "./sub/SaveButton";
 
 export const ProtocolOutForm = () => {
   const {
     state: [data, setData],
-    loadProtocol,
-  } = useContext(ProtocolContext);
+    calculate,
+  } = useContext(CalculatorContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loadProtocol()) {
-      navigate("/");
+    if (!calculate()) {
+      navigate(ROUTE.INDEX);
     }
   }, []);
 
   const onValueChangeReps = (e) => {
     const value = e.value;
     setData((prev) => ({ ...prev, [PROTOCOL_KEY.REPS]: value }));
-    loadProtocol({ [PROTOCOL_KEY.REPS]: value });
+    calculate({ [PROTOCOL_KEY.REPS]: value });
   };
 
   const onValueChangeRelativeIntensity = (e) => {
     const value = e.value;
     setData((prev) => ({ ...prev, [PROTOCOL_KEY.RI]: value }));
-    loadProtocol({ [PROTOCOL_KEY.RI]: value });
+    calculate({ [PROTOCOL_KEY.RI]: value });
   };
 
   return (
@@ -82,7 +82,7 @@ export const ProtocolOutForm = () => {
             alignItems: "center",
           }}
           fieldLabel={{
-            fontStyle: { base: "3xl", md: "4xl" },
+            textStyle: { base: "3xl", md: "4xl" },
           }}
         />
         <NumberDisplay
@@ -97,7 +97,14 @@ export const ProtocolOutForm = () => {
         />
         <Flex direction="column" minWidth="full" gapY={4} marginTop={8}>
           <SaveButton />
-          <CopyButton />
+          <CopyButton
+            value={
+              `${data[PROTOCOL_KEY.SETS]} ${PROTOCOL_KEY.SETS}` +
+              ` x ${data[PROTOCOL_KEY.REPS]} ${PROTOCOL_KEY.REPS}` +
+              ` x ${Math.round((4 * parseFloat(data[PROTOCOL_KEY.WEIGHT])) / 4).toFixed(2)} ${data[PROTOCOL_KEY.UNITS]}` +
+              ` (${data[PROTOCOL_KEY.RI]})`
+            }
+          />
         </Flex>
       </Flex>
     </Flex>

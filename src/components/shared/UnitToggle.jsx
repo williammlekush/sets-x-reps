@@ -1,19 +1,19 @@
 import { SegmentGroup } from "@chakra-ui/react";
 import { useContext } from "react";
-import ProtocolContext from "../../contexts/protocolContext";
-import { PROTOCOL_KEY, UNIT } from "../../util/constants";
+import CalculatorContext from "../../contexts/calculatorContext";
+import { SHARED_KEY, UNIT } from "../../util/constants";
 
 export const UnitToggle = () => {
   const {
     state: [data, _],
     setUnits,
-  } = useContext(ProtocolContext);
+  } = useContext(CalculatorContext);
 
   return (
     <SegmentGroup.Root
-      value={data[PROTOCOL_KEY.UNITS]}
+      value={data[SHARED_KEY.UNITS]}
       onValueChange={(e) => setUnits(e.value)}
-      defaultValue={data[PROTOCOL_KEY.UNITS]}
+      defaultValue={data[SHARED_KEY.UNITS]}
       orientation="vertical"
       height={{ base: 20, md: 28 }}
       width={{ base: 14, md: 18 }}

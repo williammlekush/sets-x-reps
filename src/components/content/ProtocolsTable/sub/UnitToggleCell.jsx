@@ -1,6 +1,6 @@
 import { Button, Table } from "@chakra-ui/react";
 import { useContext } from "react";
-import ProtocolContext from "../../../../contexts/protocolContext";
+import CalculatorContext from "../../../../contexts/calculatorContext";
 import {
   STORAGE_KEY,
   useLocalStorage,
@@ -15,7 +15,7 @@ export const UnitToggleCell = ({ index, number }) => {
     state: [data],
     setUnits,
     applyUnits,
-  } = useContext(ProtocolContext);
+  } = useContext(CalculatorContext);
 
   const units = data[PROTOCOL_KEY.UNITS];
 

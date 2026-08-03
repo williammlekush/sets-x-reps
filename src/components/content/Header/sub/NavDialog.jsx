@@ -48,6 +48,7 @@ export const NavDialog = () => {
             >
               {[
                 { label: "Protocols", route: ROUTE.INDEX },
+                { label: "One Rep Max", route: ROUTE.ORM },
                 { label: "SavedProtocols", route: ROUTE.SAVED_PROTOCOLS },
                 { label: "Close", onClick: () => onClose() },
               ].map((props) => (

@@ -1,4 +1,4 @@
-import { Button, HStack, IconButton } from "@chakra-ui/react";
+import { Button, HStack, IconButton, Text } from "@chakra-ui/react";
 import { LuArrowLeft, LuCircleHelp } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTE } from "../../../util/constants";
@@ -8,7 +8,12 @@ export const Header = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const hasBackButton = [ROUTE.PROTOCOL_RESULTS].includes(pathname);
+  const hasBackButton = [ROUTE.PROTOCOL_RESULTS, ROUTE.ORM_RESULTS].includes(
+    pathname,
+  );
+
+  const onClickBack = () =>
+    navigate(pathname === ROUTE.ORM_RESULTS ? ROUTE.ORM : ROUTE.INDEX);
 
   return (
     <HStack
@@ -21,7 +26,7 @@ export const Header = () => {
       {hasBackButton ? (
         <Button
           aria-label="Return to calculator"
-          onClick={() => navigate(ROUTE.INDEX)}
+          onClick={onClickBack}
           variant="ghost"
           fontSize={{ base: "lg", md: "xl" }}
           size={{ base: "lg", md: "xl" }}
@@ -33,6 +38,15 @@ export const Header = () => {
       ) : (
         <NavDialog />
       )}
+      <Text fontSize={{ base: "lg", md: "xl" }}>
+        {[ROUTE.INDEX, ROUTE.PROTOCOL_RESULTS].includes(pathname)
+          ? "Exercise Protocol"
+          : [ROUTE.ORM, ROUTE.ORM_RESULTS].includes(pathname)
+            ? "One Rep Max"
+            : pathname === ROUTE.SAVED_PROTOCOLS
+              ? "Saved Protocols"
+              : ""}
+      </Text>
       <IconButton
         aria-label="Open Help"
         size={{ base: "xl", md: "2xl" }}

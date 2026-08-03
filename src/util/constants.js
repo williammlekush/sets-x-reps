@@ -2,6 +2,8 @@ export const ROUTE = {
   INDEX: "/",
   PROTOCOL_RESULTS: "/protocol-results",
   SAVED_PROTOCOLS: "/protocol-saved",
+  ORM: "/orm",
+  ORM_RESULTS: "/orm-results",
 };
 
 export const UNIT = {
@@ -9,13 +11,21 @@ export const UNIT = {
   LB: "lb",
 };
 
-export const PROTOCOL_KEY = {
-  ORM: "orm",
-  RI: "ri",
+export const SHARED_KEY = {
   REPS: "reps",
-  SETS: "sets",
-  WEIGHT: "weights",
+  WEIGHT: "weight",
+  ORM: "orm",
   UNITS: "units",
+};
+
+export const PROTOCOL_KEY = {
+  ...SHARED_KEY,
+  RI: "ri",
+  SETS: "sets",
+};
+
+export const ORM_KEY = {
+  ...SHARED_KEY,
 };
 
 export const TBL_COL_PROPS = {

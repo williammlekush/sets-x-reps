@@ -1,13 +1,13 @@
 import { FormatNumber, Table } from "@chakra-ui/react";
 import { useContext } from "react";
-import ProtocolContext from "../../../../contexts/protocolContext";
+import CalculatorContext from "../../../../contexts/calculatorContext";
 import { PROTOCOL_KEY, TBL_COL_PROPS } from "../../../../util/constants";
 import { UnitToggleCell } from "./UnitToggleCell";
 
 export const ProtocolRow = ({ index }) => {
   const {
     state: [data, _],
-  } = useContext(ProtocolContext);
+  } = useContext(CalculatorContext);
 
   return (
     <Table.Row key={index}>
