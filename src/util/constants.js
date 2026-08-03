@@ -31,7 +31,6 @@ export const ORM_KEY = {
 
 export const TBL_COL_PROPS = {
   paddingX: 1,
-  textAlign: "center",
 };
 
 export const RELATIVE_MAX_FACTORS = [

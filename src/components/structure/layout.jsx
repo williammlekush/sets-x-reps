@@ -38,7 +38,7 @@ export const Layout = () => {
         paddingBottom={6}
         paddingX={10}
         flexDirection="column"
-        border="1px solid red"
+        // border="1px solid red"
         ref={containerRef}
       >
         <DimensionsContext.Provider value={dimensions}>

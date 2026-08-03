@@ -12,8 +12,10 @@ export const ProtocolRow = ({ index }) => {
 
   return (
     <Table.Row key={index}>
-      <Table.Cell {...TBL_COL_PROPS}>{data[PROTOCOL_KEY.RI]}</Table.Cell>
-      <Table.Cell {...TBL_COL_PROPS} minWidth="64px">
+      <Table.Cell {...TBL_COL_PROPS} textAlign="right">
+        {data[PROTOCOL_KEY.RI]}
+      </Table.Cell>
+      <Table.Cell {...TBL_COL_PROPS} minWidth="112px" textAlign="center">
         <UnitToggleButton
           index={index}
           number={
@@ -28,15 +30,8 @@ export const ProtocolRow = ({ index }) => {
         />
       </Table.Cell>
 
-      <Table.Cell {...TBL_COL_PROPS}>{data[PROTOCOL_KEY.REPS]}</Table.Cell>
-      <Table.Cell textAlign="center" padding={0}>
-        x
-      </Table.Cell>
-      <Table.Cell {...TBL_COL_PROPS}>{data[PROTOCOL_KEY.SETS]}</Table.Cell>
-      <Table.Cell textAlign="center" padding={0}>
-        x
-      </Table.Cell>
-      <Table.Cell {...TBL_COL_PROPS} minWidth="64px">
+      <Table.Cell {...TBL_COL_PROPS} textAlign="left">
+        {data[PROTOCOL_KEY.REPS]} x {data[PROTOCOL_KEY.SETS]} x{" "}
         <UnitToggleButton
           index={index}
           number={

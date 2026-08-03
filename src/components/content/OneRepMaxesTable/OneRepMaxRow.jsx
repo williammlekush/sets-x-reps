@@ -1,4 +1,4 @@
-import { FormatNumber, Table } from "@chakra-ui/react";
+import { FormatNumber, Table, useBreakpointValue } from "@chakra-ui/react";
 import { useContext } from "react";
 import { LuArrowRight } from "react-icons/lu";
 import CalculatorContext from "../../../contexts/calculatorContext";
@@ -12,10 +12,20 @@ export const OneRepMaxRow = ({ index }) => {
     state: [data, _],
   } = useContext(CalculatorContext);
 
+  const label = useBreakpointValue({
+    base: <LuArrowRight />,
+    md: (
+      <>
+        Use
+        <LuArrowRight />
+      </>
+    ),
+  });
+
   return (
     <Table.Row key={index}>
-      <Table.Cell {...TBL_COL_PROPS} textAlign="left">
-        {data[ORM_KEY.REPS]} reps x{" "}
+      <Table.Cell {...TBL_COL_PROPS}>
+        {data[ORM_KEY.REPS]} x{" "}
         <UnitToggleButton
           index={index}
           number={
@@ -29,7 +39,7 @@ export const OneRepMaxRow = ({ index }) => {
           dataKey={STORAGE_KEY.ORMS}
         />
       </Table.Cell>
-      <Table.Cell {...TBL_COL_PROPS} minWidth="64px">
+      <Table.Cell {...TBL_COL_PROPS} textAlign="center" minWidth="112px">
         <UnitToggleButton
           index={index}
           number={
@@ -45,12 +55,7 @@ export const OneRepMaxRow = ({ index }) => {
       </Table.Cell>
       <Table.Cell {...TBL_COL_PROPS}>
         <UseORMInProtocolButton
-          label={
-            <>
-              Use
-              <LuArrowRight />
-            </>
-          }
+          label={label}
           variant="subtle"
           size="sm"
           fontSize="sm"

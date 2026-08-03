@@ -14,13 +14,13 @@ export const ProtocolsTable = () => {
       <Table.Root size="lg" maxWidth="md">
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeader {...TBL_COL_PROPS}>RI</Table.ColumnHeader>
-            <Table.ColumnHeader {...TBL_COL_PROPS}>ORM</Table.ColumnHeader>
-            <Table.ColumnHeader {...TBL_COL_PROPS}>Reps</Table.ColumnHeader>
-            <Table.ColumnHeader padding={0} />
-            <Table.ColumnHeader {...TBL_COL_PROPS}>Sets</Table.ColumnHeader>
-            <Table.ColumnHeader padding={0} />
-            <Table.ColumnHeader {...TBL_COL_PROPS}>Weight</Table.ColumnHeader>
+            <Table.ColumnHeader {...TBL_COL_PROPS} textAlign="right">
+              RI
+            </Table.ColumnHeader>
+            <Table.ColumnHeader {...TBL_COL_PROPS} textAlign="center">
+              ORM
+            </Table.ColumnHeader>
+            <Table.ColumnHeader {...TBL_COL_PROPS}>Protocol</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
         <Table.Body>
