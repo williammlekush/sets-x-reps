@@ -20,7 +20,6 @@ export const NavButton = ({ label, route, callback, ...rest }) => {
       onClick={() => {
         if (!isOnRoute) {
           navigate(route);
-          return;
         }
         callback();
       }}
