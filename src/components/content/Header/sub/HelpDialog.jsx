@@ -1,11 +1,15 @@
-import { Dialog, IconButton, Portal, useDisclosure } from "@chakra-ui/react";
+import {
+  CloseButton,
+  Dialog,
+  IconButton,
+  Portal,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { useContext } from "react";
-import { LuMenu } from "react-icons/lu";
+import { LuCircleHelp } from "react-icons/lu";
 import DimensionsContext from "../../../../contexts/dimensionsContext";
-import { ROUTE } from "../../../../util/constants";
-import { NavButton } from "./NavButton";
 
-export const NavDialog = () => {
+export const HelpDialog = () => {
   const { open, setOpen, onClose } = useDisclosure();
 
   const dimensions = useContext(DimensionsContext);
@@ -17,24 +21,21 @@ export const NavDialog = () => {
       size={{ md: "sm" }}
       placement="top"
       motionPreset="slide-in-top"
+      scrollBehavior="inside"
     >
       <Dialog.Trigger asChild>
         <IconButton
-          aria-label="Open Navigation"
+          aria-label="Open Help"
           size={{ base: "xl", md: "2xl" }}
           variant="ghost"
           rounded="full"
         >
-          <LuMenu />
+          <LuCircleHelp />
         </IconButton>
       </Dialog.Trigger>
       <Portal>
-        <Dialog.Backdrop />
-        <Dialog.Positioner
-          marginTop={{ base: 0, md: "10vh" }}
-          backdropFilter="auto"
-          backdropBlur="lg"
-        >
+        <Dialog.Backdrop backdropFilter="auto" backdropBlur="lg" />
+        <Dialog.Positioner marginTop={{ base: 0, md: "10vh" }}>
           <Dialog.Content
             marginTop={0}
             paddingTop={0}
@@ -43,25 +44,19 @@ export const NavDialog = () => {
             rounded={0}
             backgroundColor="rgba(17,17,17,0.6)"
           >
+            <Dialog.Header>
+              <Dialog.Title>How to use Exercise Protocols</Dialog.Title>
+              <Dialog.CloseTrigger asChild>
+                <CloseButton rounded="full" />
+              </Dialog.CloseTrigger>
+            </Dialog.Header>
             <Dialog.Body
               padding={0}
               display="flex"
               flexDirection="column"
               alignItems="stretch"
             >
-              {[
-                { label: "Protocols", route: ROUTE.INDEX },
-                { label: "One Rep Max", route: ROUTE.ORM },
-                { label: "Saved Protocols", route: ROUTE.PROTOCOL_SAVED },
-                { label: "Saved Maxes", route: ROUTE.ORM_SAVED },
-                { label: "Close", onClick: () => onClose() },
-              ].map((props) => (
-                <NavButton
-                  key={props.label + props.route}
-                  callback={onClose}
-                  {...props}
-                />
-              ))}
+              {}
             </Dialog.Body>
           </Dialog.Content>
         </Dialog.Positioner>
