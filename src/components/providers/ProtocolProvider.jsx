@@ -1,21 +1,28 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import CalculatorContext from "../../contexts/calculatorContext";
 import {
   INTENSITY_TO_PROTOCOL,
   PROTOCOL_KEY,
   RELATIVE_MAX_FACTORS,
+  SHARED_KEY,
   UNIT,
 } from "../../util/constants";
 
 export const ProtocolProvider = ({ protocol, children }) => {
+  const location = useLocation();
+
+  const orm = location.state?.[SHARED_KEY.ORM] || {};
+  const units = location.state?.[SHARED_KEY.UNITS] || {};
+
   const [data, setData] = useState(
     protocol ?? {
-      [PROTOCOL_KEY.ORM]: "",
+      [PROTOCOL_KEY.ORM]: orm ?? "",
       [PROTOCOL_KEY.RI]: "",
       [PROTOCOL_KEY.REPS]: "",
       [PROTOCOL_KEY.SETS]: "",
       [PROTOCOL_KEY.WEIGHT]: "",
-      [PROTOCOL_KEY.UNITS]: UNIT.LB,
+      [PROTOCOL_KEY.UNITS]: units || UNIT.LB,
     },
   );
 

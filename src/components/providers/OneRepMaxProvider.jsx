@@ -29,7 +29,7 @@ export const OneRepMaxProvider = ({ protocol, children }) => {
      * link: source: https://www.researchgate.net/publication/243666838_Accuracy_of_Seven_Equations_for_Predicting_1-RM_Performance_of_Apparently_Healthy_Sedentary_Older_Adults
      * */
     const oneRepMax = weight / (1.0278 - 0.0278 * reps);
-    setData((prev) => ({ ...prev, [ORM_KEY.ORM]: oneRepMax }));
+    setData((prev) => ({ ...prev, [ORM_KEY.ORM]: JSON.stringify(oneRepMax) }));
     return true;
   };
 
