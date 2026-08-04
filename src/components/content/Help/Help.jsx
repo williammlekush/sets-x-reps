@@ -1,4 +1,5 @@
 import { Flex } from "@chakra-ui/react";
+import { useTitle } from "../../../hooks/useTitle";
 import { ExerciseProtocolsSection } from "./sub/ExerciseProtocolsSection";
 import { OneRepMaxSection } from "./sub/OneRepMaxSection";
 
