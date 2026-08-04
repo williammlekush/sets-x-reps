@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CalculatorContext from "../../contexts/calculatorContext";
 import { STORAGE_KEY } from "../../hooks/useLocalStorage";
+import { useTitle } from "../../hooks/useTitle";
 import { PROTOCOL_KEY, ROUTE, UNIT } from "../../util/constants";
 import { CopyButton } from "../shared/CopyButton";
 import { NumberDisplay } from "../shared/NumberDisplay";
@@ -12,6 +13,8 @@ import { UnitToggle } from "../shared/UnitToggle";
 import { X } from "../shared/X";
 
 export const ProtocolOutForm = () => {
+  useTitle(`Repulator - Exercise Protocol Result`);
+
   const {
     state: [data, setData],
     calculate,

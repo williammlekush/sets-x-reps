@@ -7,6 +7,7 @@ export const ROUTE = {
   ORM_RESULTS: "/orm-results",
   ORM_SAVED: "/orm-saved",
   HELP: "/help",
+  FALLBACK: "*",
 };
 
 export const UNIT = {

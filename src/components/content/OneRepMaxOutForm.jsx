@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CalculatorContext from "../../contexts/calculatorContext";
 import { STORAGE_KEY } from "../../hooks/useLocalStorage";
+import { useTitle } from "../../hooks/useTitle";
 import { ORM_KEY, ROUTE } from "../../util/constants";
 import { CopyButton } from "../shared/CopyButton";
 import { NumberDisplay } from "../shared/NumberDisplay";
@@ -13,9 +14,10 @@ import { UseORMInProtocolButton } from "../shared/UseORMInProtcolButton";
 import { X } from "../shared/X";
 
 export const OneRepMaxOutForm = () => {
+  useTitle("Repulator - One Rep Max Result");
+
   const {
     state: [data, setData],
-    isValid,
     calculate,
   } = useContext(CalculatorContext);
 

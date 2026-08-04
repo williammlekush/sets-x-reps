@@ -1,11 +1,14 @@
 import { Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useTitle } from "../../hooks/useTitle";
 import { PROTOCOL_KEY, ROUTE } from "../../util/constants";
 import { NumberField } from "../shared/NumberField";
 import { SubmitCalculationButton } from "../shared/SubmitCalculationButton";
 import { UnitToggle } from "../shared/UnitToggle";
 
 export const ProtocolInForm = () => {
+  useTitle(`Repulator - Generate Exercise Protocol`);
+
   const navigate = useNavigate();
 
   const onSubmit = (e) => {

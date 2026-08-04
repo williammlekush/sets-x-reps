@@ -6,7 +6,12 @@ export const Subsection = ({ id, heading, paragraphs = [] }) => {
       <Heading id={id} as="h4" size="xl">
         {heading}
       </Heading>
-      <Stack gap={2}>{...paragraphs}</Stack>
+      <Stack gap={2}>
+        {...paragraphs.map((para, index) => ({
+          ...para,
+          key: `para-${index}`,
+        }))}
+      </Stack>
     </Stack>
   );
 };

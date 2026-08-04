@@ -1,5 +1,6 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { ROUTE } from "../../util/constants";
+import { Fallback } from "../content/Fallback";
 import { Help } from "../content/Help/Help";
 import { OneRepMaxesTable } from "../content/OneRepMaxesTable/OneRepMaxesTable";
 import { OneRepMaxInForm } from "../content/OneRepMaxInForm";
@@ -44,6 +45,7 @@ const Router = () => {
         <Route element={<Layout />}>
           <Route path={ROUTE.HELP} element={<Help />} />
         </Route>
+        <Route path={ROUTE.FALLBACK} element={<Fallback />} />
       </Routes>
     </HashRouter>
   );
