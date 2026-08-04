@@ -8,6 +8,8 @@ import {
 import { useContext } from "react";
 import { LuCircleHelp } from "react-icons/lu";
 import DimensionsContext from "../../../../contexts/dimensionsContext";
+import { ExerciseProtocolsSection } from "./HelpDialog/sub/ExerciseProtocolsSection";
+import { OneRepMaxSection } from "./HelpDialog/sub/OneRepMaxSection";
 
 export const HelpDialog = () => {
   const { open, setOpen, onClose } = useDisclosure();
@@ -38,25 +40,32 @@ export const HelpDialog = () => {
         <Dialog.Positioner marginTop={{ base: 0, md: "10vh" }}>
           <Dialog.Content
             marginTop={0}
-            paddingTop={0}
             minHeight={{ base: "100vh", md: 552 }}
             maxHeight={{ base: "100vh", md: dimensions.height }}
             rounded={0}
             backgroundColor="rgba(17,17,17,0.6)"
+            paddingBottom={2}
           >
-            <Dialog.Header>
-              <Dialog.Title>How to use Exercise Protocols</Dialog.Title>
-              <Dialog.CloseTrigger asChild>
-                <CloseButton rounded="full" />
-              </Dialog.CloseTrigger>
+            <Dialog.Header
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Dialog.Title textStyle="xl">How to Everything</Dialog.Title>
+              <CloseButton
+                rounded="full"
+                onClick={onClose}
+                colorPalette="cyan"
+              />
             </Dialog.Header>
             <Dialog.Body
-              padding={0}
               display="flex"
               flexDirection="column"
               alignItems="stretch"
+              gap={8}
             >
-              {}
+              <ExerciseProtocolsSection />
+              <OneRepMaxSection />
             </Dialog.Body>
           </Dialog.Content>
         </Dialog.Positioner>
