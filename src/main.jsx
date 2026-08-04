@@ -6,7 +6,7 @@ import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Provider>
+    <Provider forcedTheme="dark">
       <Router />
     </Provider>
   </StrictMode>,
