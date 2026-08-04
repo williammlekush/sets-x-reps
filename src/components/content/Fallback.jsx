@@ -2,7 +2,11 @@ import { Center, Heading, Stack, Text } from "@chakra-ui/react";
 
 export const Fallback = () => {
   return (
-    <Center minHeight="100vh">
+    <Center
+      minHeight="100vh"
+      marginY={{ base: 8, md: 0 }}
+      marginX={{ base: 16, md: 0 }}
+    >
       <Stack direction="column" alignItems="flex-start">
         <Heading>404 - Not Found</Heading>
         <Text>Oh.</Text>
