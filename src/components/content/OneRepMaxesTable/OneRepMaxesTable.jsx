@@ -14,10 +14,8 @@ export const OneRepMaxesTable = () => {
       <Table.Root size="lg" maxWidth="md">
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeader {...TBL_COL_PROPS} textAlign="left">
-              Top Set
-            </Table.ColumnHeader>
-            <Table.ColumnHeader {...TBL_COL_PROPS}>
+            <Table.ColumnHeader {...TBL_COL_PROPS}>Top Set</Table.ColumnHeader>
+            <Table.ColumnHeader {...TBL_COL_PROPS} textAlign="center">
               One Rep Max
             </Table.ColumnHeader>
             <Table.ColumnHeader {...TBL_COL_PROPS} />
