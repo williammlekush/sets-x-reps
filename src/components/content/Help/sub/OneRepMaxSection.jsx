@@ -1,7 +1,7 @@
 import { Button, Text } from "@chakra-ui/react";
 import { LuArrowRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import { ROUTE } from "../../../../../../util/constants";
+import { ROUTE } from "../../../../util/constants";
 import { Emphasize } from "../shared/Emphasize";
 import { Section } from "../shared/Section";
 import { Subsection } from "../shared/Subsection";
@@ -14,8 +14,8 @@ export const OneRepMaxSection = () => {
       heading="Calculate Your One Rep Max"
       subsections={[
         <Text>
-          Enter the reps and weight from a sub-maximal set to estimate your one
-          rep max for an exercise.
+          Use the One Rep Max calculator to estimate it from the reps and weight
+          of a sub-maximal set.
         </Text>,
         <Text>The fewer reps, the more accurate the calculation.</Text>,
         <Button

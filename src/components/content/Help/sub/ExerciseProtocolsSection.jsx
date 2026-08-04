@@ -1,10 +1,10 @@
 import { Button, Text } from "@chakra-ui/react";
 import { LuArrowRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import { ROUTE } from "../../../../../../util/constants";
-import { Section } from "../../HelpDialog/shared/Section";
-import { Subsection } from "../../HelpDialog/shared/Subsection";
+import { ROUTE } from "../../../../util/constants";
 import { Emphasize } from "../shared/Emphasize";
+import { Section } from "../shared/Section";
+import { Subsection } from "../shared/Subsection";
 
 export const ExerciseProtocolsSection = () => {
   const navigate = useNavigate();

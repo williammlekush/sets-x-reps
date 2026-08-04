@@ -8,8 +8,8 @@ import {
 import { useContext } from "react";
 import { LuCircleHelp } from "react-icons/lu";
 import DimensionsContext from "../../../../contexts/dimensionsContext";
-import { ExerciseProtocolsSection } from "./HelpDialog/sub/ExerciseProtocolsSection";
-import { OneRepMaxSection } from "./HelpDialog/sub/OneRepMaxSection";
+import { HELP_TITLE } from "../../../../util/constants";
+import { Help } from "../../Help/Help";
 
 export const HelpDialog = () => {
   const { open, setOpen, onClose } = useDisclosure();
@@ -45,27 +45,22 @@ export const HelpDialog = () => {
             rounded={0}
             backgroundColor="rgba(17,17,17,0.6)"
             paddingBottom={2}
+            paddingX={{ base: 4, md: 0 }}
           >
             <Dialog.Header
               display="flex"
               alignItems="center"
               justifyContent="space-between"
             >
-              <Dialog.Title textStyle="xl">How to Everything</Dialog.Title>
+              <Dialog.Title textStyle="xl">{HELP_TITLE}</Dialog.Title>
               <CloseButton
                 rounded="full"
                 onClick={onClose}
                 colorPalette="cyan"
               />
             </Dialog.Header>
-            <Dialog.Body
-              display="flex"
-              flexDirection="column"
-              alignItems="stretch"
-              gap={8}
-            >
-              <ExerciseProtocolsSection />
-              <OneRepMaxSection />
+            <Dialog.Body>
+              <Help />
             </Dialog.Body>
           </Dialog.Content>
         </Dialog.Positioner>

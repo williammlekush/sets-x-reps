@@ -2,7 +2,7 @@ import { Heading, Stack } from "@chakra-ui/react";
 
 export const Subsection = ({ id, heading, paragraphs = [] }) => {
   return (
-    <Stack gap={0}>
+    <Stack gap={2}>
       <Heading id={id} as="h4" size="xl">
         {heading}
       </Heading>
