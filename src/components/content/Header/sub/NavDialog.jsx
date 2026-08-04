@@ -21,7 +21,6 @@ export const NavDialog = () => {
       <Dialog.Trigger asChild>
         <IconButton
           aria-label="Open Navigation"
-          onClick={() => {}}
           size={{ base: "xl", md: "2xl" }}
           variant="ghost"
           rounded="full"
@@ -31,26 +30,31 @@ export const NavDialog = () => {
       </Dialog.Trigger>
       <Portal>
         <Dialog.Backdrop />
-        <Dialog.Positioner marginTop={{ base: 0, md: "10vh" }}>
+        <Dialog.Positioner
+          marginTop={{ base: 0, md: "10vh" }}
+          backdropFilter="auto"
+          backdropBlur="lg"
+        >
           <Dialog.Content
             marginTop={0}
             paddingTop={0}
             minHeight={{ base: "100vh", md: 552 }}
             maxHeight={{ base: "100vh", md: dimensions.height }}
             rounded={0}
+            backgroundColor="rgba(17,17,17,0.6)"
           >
             <Dialog.Body
               padding={0}
               display="flex"
               flexDirection="column"
               alignItems="stretch"
-              justifyContent="flex-start"
             >
               {[
                 { label: "Protocols", route: ROUTE.INDEX },
                 { label: "One Rep Max", route: ROUTE.ORM },
                 { label: "Saved Protocols", route: ROUTE.PROTOCOL_SAVED },
                 { label: "Saved Maxes", route: ROUTE.ORM_SAVED },
+                { label: "Help", route: ROUTE.HELP },
                 { label: "Close", onClick: () => onClose() },
               ].map((props) => (
                 <NavButton

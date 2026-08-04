@@ -1,3 +1,4 @@
+export const HELP_TITLE = "The Guide to Everything";
 export const ROUTE = {
   INDEX: "/",
   PROTOCOL_RESULTS: "/protocol-results",
@@ -5,6 +6,7 @@ export const ROUTE = {
   ORM: "/orm",
   ORM_RESULTS: "/orm-results",
   ORM_SAVED: "/orm-saved",
+  HELP: "/help",
 };
 
 export const UNIT = {

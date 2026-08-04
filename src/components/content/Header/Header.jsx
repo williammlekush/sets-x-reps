@@ -1,7 +1,8 @@
-import { Button, HStack, IconButton, Text } from "@chakra-ui/react";
-import { LuArrowLeft, LuCircleHelp } from "react-icons/lu";
+import { Box, Button, HStack, Text } from "@chakra-ui/react";
+import { LuArrowLeft } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ROUTE } from "../../../util/constants";
+import { HELP_TITLE, ROUTE } from "../../../util/constants";
+import { HelpDialog } from "./sub/HelpDialog";
 import { NavDialog } from "./sub/NavDialog";
 
 export const Header = () => {
@@ -47,16 +48,13 @@ export const Header = () => {
               ? "Saved Protocols"
               : pathname === ROUTE.ORM_SAVED
                 ? "Saved One Rep Maxes"
-                : ""}
+                : pathname === ROUTE.HELP
+                  ? HELP_TITLE
+                  : ""}
       </Text>
-      <IconButton
-        aria-label="Open Help"
-        size={{ base: "xl", md: "2xl" }}
-        variant="ghost"
-        rounded="full"
-      >
-        <LuCircleHelp />
-      </IconButton>
+      <Box visibility={pathname === ROUTE.HELP ? "hidden" : "visible"}>
+        <HelpDialog />
+      </Box>
     </HStack>
   );
 };
